@@ -35,8 +35,8 @@ export default function Trainers({ onEnlistClick }) {
 
   return (
     <section
-      id="trainers"
-      className="relative bg-[#080808] py-20 sm:py-28 overflow-hidden border-t border-[#A87942]/20"
+      id="legion"
+      className="relative bg-[#050505] py-24 sm:py-32 overflow-hidden border-t border-[#181818]"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         
@@ -46,22 +46,24 @@ export default function Trainers({ onEnlistClick }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 pb-6 border-b border-[#1c1a17]"
+          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 pb-6 border-b border-[#181818]"
         >
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <span className="w-8 h-[2px] bg-[#A87942]" />
-              <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.35em] text-[#C6A16B] font-mono">
-                SECTION 07 — CENTURIONS & THE LEGION
+              <span className="w-8 h-[2px] bg-[#C1121F]" />
+              <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.35em] text-[#C1121F] font-mono">
+                CHAPTER V // CENTURIONS & THE LEGION
               </span>
             </div>
-            <h2 className="font-condensed text-4xl sm:text-6xl font-bold uppercase text-[#E8E2D8] tracking-[0.02em] leading-[0.95]">
+            <h2 className="font-condensed text-4xl sm:text-6xl font-bold uppercase text-white tracking-[0.02em] leading-[0.95]">
               NO WARRIOR <br />
-              <span className="font-cinzel text-[#A87942]">STANDS ALONE.</span>
+              <span className="font-cinzel text-transparent bg-clip-text bg-gradient-to-r from-[#C1121F] via-[#E5E2DC] to-[#9E1B1B]">
+                STANDS ALONE.
+              </span>
             </h2>
           </div>
-          <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-[#9E9990] max-w-sm lg:text-right">
-            Led by elite battle-tested coaches. Backed by a community with zero ego and relentless mutual respect.
+          <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-[#8E8A82] max-w-sm lg:text-right">
+            Led by elite battle-tested commanders. Backed by a community with zero ego and ruthless mutual accountability.
           </p>
         </motion.div>
 
@@ -74,21 +76,21 @@ export default function Trainers({ onEnlistClick }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.7, delay: idx * 0.12 }}
-              className="group relative bg-[#141414] border border-[#1c1a17] hover:border-[#A87942] transition-all duration-500 overflow-hidden flex flex-col justify-between shadow-bronze-subtle"
+              className="group relative bg-[#0D0D0D] border border-[#201E1C] hover:border-[#9E1B1B] transition-all duration-500 overflow-hidden flex flex-col justify-between shadow-stone-drop"
             >
               {/* Portrait Photography with Smooth Zoom */}
-              <div className="relative h-80 overflow-hidden bg-[#080808]">
+              <div className="relative h-80 overflow-hidden bg-[#050505]">
                 <img
                   src={trainer.image}
                   alt={trainer.alt}
                   className="w-full h-full object-cover object-top filter contrast-125 brightness-[78%] group-hover:scale-105 group-hover:brightness-[90%] transition-transform duration-700 ease-out"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-[#141414]/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] via-[#0D0D0D]/40 to-transparent" />
                 
                 {/* Rank Tag */}
-                <div className="absolute top-4 left-4 z-10 bg-[#080808]/85 px-3 py-1 border border-[#A87942]/40 backdrop-blur-sm">
-                  <span className="text-[9px] font-mono uppercase tracking-[0.25em] text-[#C6A16B] font-bold">
+                <div className="absolute top-4 left-4 z-10 bg-[#050505]/90 px-3 py-1 border border-[#201E1C] group-hover:border-[#9E1B1B]/60 transition-colors">
+                  <span className="text-[9px] font-mono uppercase tracking-[0.25em] text-[#C1121F] font-bold">
                     {trainer.rank}
                   </span>
                 </div>
@@ -97,62 +99,62 @@ export default function Trainers({ onEnlistClick }) {
               {/* Coach Bio Details */}
               <div className="p-6 flex flex-col flex-grow justify-between">
                 <div>
-                  <h3 className="font-cinzel text-xl font-bold uppercase text-[#E8E2D8] mb-1 group-hover:text-[#C6A16B] transition-colors">
+                  <h3 className="font-condensed text-2xl font-bold uppercase text-white mb-1 group-hover:text-[#C1121F] transition-colors">
                     {trainer.name}
                   </h3>
-                  <p className="text-xs text-[#A87942] font-mono uppercase tracking-wider mb-4">
+                  <p className="text-xs text-[#8E8A82] font-mono uppercase tracking-wider mb-4">
                     {trainer.specialty}
                   </p>
-                  <p className="font-cinzel text-xs text-[#9E9990] italic mb-6">
+                  <p className="font-cinzel text-xs text-white/80 italic mb-6">
                     &ldquo;{trainer.quote}&rdquo;
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-[#1c1a17] flex items-center justify-between text-[10px] font-mono text-[#9E9990]">
+                <div className="pt-4 border-t border-[#181818] flex items-center justify-between text-[10px] font-mono text-[#8E8A82]">
                   <span>{trainer.experience}</span>
-                  <span className="text-[#A87942] font-bold uppercase">MENTOR &bull; 1-ON-1</span>
+                  <span className="text-[#C1121F] font-bold uppercase">MENTOR &bull; 1-ON-1</span>
                 </div>
               </div>
 
-              {/* Bottom Bronze Edge */}
-              <div className="h-[2px] w-0 group-hover:w-full bg-[#A87942] transition-all duration-500 shadow-[0_0_8px_#A87942]" />
+              {/* Bottom Crimson Edge */}
+              <div className="h-[2px] w-0 group-hover:w-full bg-[#C1121F] transition-all duration-500 shadow-[0_0_8px_#C1121F]" />
             </motion.div>
           ))}
         </div>
 
-        {/* Community Banner */}
+        {/* Community Legion Banner */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.8 }}
-          className="relative group overflow-hidden border border-[#A87942]/30 bg-[#141414] min-h-[300px] sm:min-h-[360px] flex flex-col justify-end p-8 sm:p-12"
+          className="relative group overflow-hidden border border-[#201E1C] bg-[#0D0D0D] min-h-[300px] sm:min-h-[360px] flex flex-col justify-end p-8 sm:p-12"
         >
           <div className="absolute inset-0 z-0">
             <img
               src="/images/legion_athletes.webp"
               alt="Legion athletes training together with sleds and barbells"
-              className="w-full h-full object-cover object-center filter contrast-125 brightness-[50%]"
+              className="w-full h-full object-cover object-center filter contrast-125 brightness-[45%]"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/95 via-[#080808]/75 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/95 via-[#050505]/75 to-transparent" />
           </div>
 
           <div className="relative z-10 max-w-2xl">
-            <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#A87942] block mb-2">
-              THE BROTHERHOOD & SISTERHOOD
+            <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#C1121F] block mb-2 font-bold">
+              THE UNITED LEGION
             </span>
-            <h3 className="font-condensed text-3xl sm:text-4xl font-bold uppercase text-[#E8E2D8] mb-3">
+            <h3 className="font-condensed text-3xl sm:text-4xl font-bold uppercase text-white mb-3">
               TRAIN WITH WARRIORS WHO DEMAND YOUR BEST.
             </h3>
-            <p className="text-xs sm:text-sm text-[#9E9990] font-light leading-relaxed max-w-xl mb-6">
+            <p className="text-xs sm:text-sm text-[#8E8A82] font-light leading-relaxed max-w-xl mb-6">
               When you step through the arena gates, you leave your ego in the chalk box. We support every heavy attempt, celebrate every personal record, and push each other through the final rep.
             </p>
 
-            <div className="flex items-center gap-6 text-[10px] font-mono text-[#C6A16B] uppercase tracking-wider">
+            <div className="flex items-center gap-6 text-[10px] font-mono text-white uppercase tracking-wider">
               <span>ZERO EGO &bull; ALL GRIND</span>
               <span>&bull;</span>
-              <span>100% SQUAD ACCOUNTABILITY</span>
+              <span className="text-[#C1121F]">100% SQUAD ACCOUNTABILITY</span>
             </div>
           </div>
         </motion.div>

@@ -12,7 +12,7 @@ export default function Transformation({ onEnlistClick }) {
       title: 'DENSE MUSCULAR CHASSIS',
       description: 'Systematic high-tension microcycles focused on mechanical overload, deep eccentric control, and structural bone remodeling.',
       stat: '+18.4%',
-      statLabel: 'AVERAGE LEAN MASS GAIN ACROSS 16-WEEK CYCLE',
+      statLabel: 'AVERAGE LEAN MASS INCREASE ACROSS 16-WEEK CYCLE',
       image: '/images/trial_after.webp',
       alt: 'Athletic warrior physique post-training progression',
     },
@@ -28,7 +28,7 @@ export default function Transformation({ onEnlistClick }) {
     },
     {
       id: 'conditioning',
-      label: '03. METABOLIC ENDURANCE',
+      label: '03. METABOLIC SIEGE',
       title: 'THE UNRELENTING ENGINE',
       description: 'High-density lactate threshold intervals and strongman sled carries engineered to conquer fatigue in deep water.',
       stat: 'SUB 6:00',
@@ -42,8 +42,8 @@ export default function Transformation({ onEnlistClick }) {
 
   return (
     <section
-      id="transformation"
-      className="relative bg-[#080808] py-20 sm:py-28 overflow-hidden border-t border-[#A87942]/20"
+      id="crucible"
+      className="relative bg-[#050505] py-24 sm:py-32 overflow-hidden border-t border-[#181818]"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         
@@ -53,21 +53,23 @@ export default function Transformation({ onEnlistClick }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 pb-6 border-b border-[#1c1a17]"
+          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 pb-6 border-b border-[#181818]"
         >
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <span className="w-8 h-[2px] bg-[#A87942]" />
-              <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.35em] text-[#C6A16B] font-mono">
-                SECTION 04 — THE CRUCIBLE
+              <span className="w-8 h-[2px] bg-[#C1121F]" />
+              <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.35em] text-[#C1121F] font-mono">
+                CHAPTER IV // THE CRUCIBLE
               </span>
             </div>
-            <h2 className="font-condensed text-4xl sm:text-6xl font-bold uppercase text-[#E8E2D8] tracking-[0.02em] leading-[0.95]">
+            <h2 className="font-condensed text-4xl sm:text-6xl font-bold uppercase text-white tracking-[0.02em] leading-[0.95]">
               PHYSICAL PROGRESS <br />
-              <span className="font-cinzel text-[#A87942]">IS CONQUERED.</span>
+              <span className="font-cinzel text-transparent bg-clip-text bg-gradient-to-r from-[#C1121F] via-[#E5E2DC] to-[#9E1B1B]">
+                IS CONQUERED.
+              </span>
             </h2>
           </div>
-          <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-[#9E9990] max-w-sm lg:text-right">
+          <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-[#8E8A82] max-w-sm lg:text-right">
             Every repetition leaves an irreversible mark. You do not find your limits; you build past them.
           </p>
         </motion.div>
@@ -80,11 +82,11 @@ export default function Transformation({ onEnlistClick }) {
               onClick={() => setActiveTab(pillar.id)}
               className={`p-4 border text-left transition-all duration-300 cursor-pointer ${
                 activeTab === pillar.id
-                  ? 'bg-[#141414] border-[#A87942] text-white shadow-bronze-subtle'
-                  : 'bg-[#080808] border-[#1c1a17] text-[#9E9990] hover:text-[#E8E2D8] hover:border-[#A87942]/40'
+                  ? 'bg-[#121212] border-[#9E1B1B] text-white shadow-crimson-subtle'
+                  : 'bg-[#0D0D0D] border-[#181818] text-[#8E8A82] hover:text-white hover:border-[#201E1C]'
               }`}
             >
-              <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#A87942] block mb-1">
+              <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#C1121F] block mb-1">
                 {pillar.label}
               </span>
               <span className="font-condensed text-lg uppercase tracking-wider font-bold">
@@ -100,27 +102,27 @@ export default function Transformation({ onEnlistClick }) {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#141414] border border-[#A87942]/30 p-8 sm:p-12"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#0D0D0D] border border-[#201E1C] p-8 sm:p-12"
         >
           {/* Details Column */}
           <div className="lg:col-span-6 flex flex-col justify-between">
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#A87942] block mb-2">
-                SCIENTIFIC PROGRESSION // 16-WEEK CYCLE
+              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#C1121F] block mb-2">
+                SCIENTIFIC PROGRESSION // 16-WEEK PROTOCOL
               </span>
-              <h3 className="font-cinzel text-3xl sm:text-4xl font-bold uppercase text-[#E8E2D8] mb-4">
+              <h3 className="font-cinzel text-3xl sm:text-4xl font-bold uppercase text-white mb-4">
                 {current.title}
               </h3>
-              <p className="text-[#9E9990] text-sm sm:text-base font-light leading-relaxed mb-8">
+              <p className="text-[#8E8A82] text-sm sm:text-base font-light leading-relaxed mb-8">
                 {current.description}
               </p>
 
               {/* Stat Highlight */}
-              <div className="p-6 bg-[#080808] border border-[#1c1a17] mb-8">
-                <div className="font-cinzel text-4xl sm:text-5xl font-black text-[#C6A16B]">
+              <div className="p-6 bg-[#050505] border border-[#181818] mb-8">
+                <div className="font-cinzel text-4xl sm:text-5xl font-black text-white">
                   {current.stat}
                 </div>
-                <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#9E9990] mt-1 font-semibold">
+                <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#8E8A82] mt-1 font-semibold">
                   {current.statLabel}
                 </div>
               </div>
@@ -128,25 +130,25 @@ export default function Transformation({ onEnlistClick }) {
 
             <button
               onClick={onEnlistClick}
-              className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] font-bold text-[#E8E2D8] hover:text-[#C6A16B] transition-colors cursor-pointer"
+              className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] font-bold text-white hover:text-[#C1121F] transition-colors cursor-pointer"
             >
               <span>COMMENCE THIS TRANSFORMATION</span>
-              <ArrowRight className="w-4 h-4 text-[#A87942]" />
+              <ArrowRight className="w-4 h-4 text-[#C1121F]" />
             </button>
           </div>
 
           {/* Photographic Visual */}
-          <div className="lg:col-span-6 relative overflow-hidden h-[340px] sm:h-[420px] border border-[#1c1a17]">
+          <div className="lg:col-span-6 relative overflow-hidden h-[340px] sm:h-[420px] border border-[#181818]">
             <img
               src={current.image}
               alt={current.alt}
               className="w-full h-full object-cover object-center filter contrast-125 brightness-[75%]"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent opacity-70" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] via-transparent to-transparent opacity-75" />
             
-            <div className="absolute bottom-4 left-4 text-[9px] font-mono uppercase tracking-[0.25em] text-[#C6A16B] bg-[#080808]/80 px-2.5 py-1 border border-[#A87942]/30">
-              VERIFIED WARRIOR DATA &bull; MMXXVI
+            <div className="absolute bottom-4 left-4 text-[9px] font-mono uppercase tracking-[0.25em] text-white bg-[#050505]/90 px-3 py-1 border border-[#9E1B1B]/40">
+              WARRIOR BIOMECHANICAL AUDIT &bull; MMXXVI
             </div>
           </div>
         </motion.div>

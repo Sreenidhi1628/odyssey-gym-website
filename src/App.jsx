@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import Philosophy from './components/Philosophy'
+import WarriorCode from './components/WarriorCode'
 import Arena from './components/Arena'
-import Transformation from './components/Transformation'
 import Training from './components/Training'
-import Membership from './components/Membership'
+import Transformation from './components/Transformation'
 import Trainers from './components/Trainers'
+import Membership from './components/Membership'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
@@ -29,51 +29,51 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#080808] text-[#E8E2D8] flex flex-col selection:bg-[#A87942] selection:text-[#080808] font-body antialiased">
+    <div className="min-h-screen bg-[#050505] text-[#E5E2DC] flex flex-col selection:bg-[#9E1B1B] selection:text-white font-body antialiased">
       
-      {/* Command Center Navigation */}
+      {/* Chapter-Based Ancient War Command Navigation */}
       <Navbar
         onClaimClick={() => scrollToSection('enlist', 'Legionary Membership Enlistment')}
       />
 
-      {/* Main Experience: A Cinematic Greek Warrior's Journey */}
+      {/* Main Experience: A Cinematic Warrior's Journey */}
       <main className="flex-grow">
         
-        {/* Section 01: Hero — Enter the Arena */}
+        {/* Prologue: The Call to War (Sculptural Helmet & Monumental Typography) */}
         <Hero
           onBeginClick={() => scrollToSection('enlist', 'General Arena Enlistment')}
-          onDiscoverClick={() => scrollToSection('philosophy')}
+          onDiscoverClick={() => scrollToSection('code')}
         />
 
-        {/* Section 02: The Philosophy — Comfort Builds Nothing */}
-        <Philosophy onExploreClick={() => scrollToSection('arena')} />
+        {/* Chapter I: The Sacred Code (Ancient Stone Inscription) */}
+        <WarriorCode />
 
-        {/* Section 03: The Training Arena — Editorial Hardware Grid */}
+        {/* Chapter II: Forged in Battle (The Training Sanctum & Hardware) */}
         <Arena onEnlistClick={() => scrollToSection('enlist')} />
 
-        {/* Section 04: The Transformation — The Crucible */}
-        <Transformation onEnlistClick={() => scrollToSection('enlist')} />
-
-        {/* Section 05: Training Programs — Choose Your Battle */}
+        {/* Chapter III: Combat Disciplines (The 4 Training Curricula) */}
         <Training
           onSelectProgramForInquiry={(programTitle) => scrollToSection('enlist', programTitle)}
         />
 
-        {/* Section 06: Membership — Claim Your Place */}
+        {/* Chapter IV: The Crucible (Physical Progress & Metamorphic Overload) */}
+        <Transformation onEnlistClick={() => scrollToSection('enlist')} />
+
+        {/* Chapter V: Centurions & The Legion (Commanders & Community) */}
+        <Trainers onEnlistClick={() => scrollToSection('enlist', '1-on-1 Centurion Mentorship')} />
+
+        {/* Chapter VI: Earn Your Legacy (Stone Tablet Membership) */}
         <Membership
           onSelectTier={(tierName) => scrollToSection('enlist', `${tierName} Membership`)}
           onSpeakTeamClick={() => scrollToSection('enlist', 'Custom Squad Enlistment')}
         />
 
-        {/* Section 07: Centurion Trainers & The Legion Community */}
-        <Trainers onEnlistClick={() => scrollToSection('enlist', '1-on-1 Centurion Mentorship')} />
-
-        {/* Section 08: Final CTA & Communications Enlistment */}
+        {/* The Final Trial: The Warrior's Oath & Enlistment */}
         <Contact preselectedInterest={selectedInterest} />
 
       </main>
 
-      {/* Compact Elegant Footer */}
+      {/* The Final Oath Footer */}
       <Footer />
 
     </div>
