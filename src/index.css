@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-obsidian: #080808;
+    --color-deep-black: #111111;
+    --color-charcoal: #1A1A1A;
+    --color-blood-red: #D10A20;
+    --color-crimson: #FF1E35;
+    --color-pure-white: #FFFFFF;
+    --color-soft-white: #E5E5E5;
+    --color-muted: #A6A6A6;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #080808;
+    color: #FFFFFF;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: #080808;
+    color: #FFFFFF;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background-color: #D10A20;
+    color: #FFFFFF;
+  }
+}
+
+/* Custom Typography Helpers */
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-condensed {
+  font-family: 'Oswald', sans-serif;
+}
+
+.font-body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Custom Shadows & Blood Red Glows */
+.shadow-red-glow {
+  box-shadow: 0 0 30px rgba(209, 10, 32, 0.45);
+}
+
+.shadow-red-subtle {
+  box-shadow: 0 4px 30px rgba(209, 10, 32, 0.2);
+}
+
+/* Vignette & Gradients */
+.bg-vignette {
+  background: radial-gradient(circle at center, transparent 35%, rgba(8, 8, 8, 0.9) 85%, #080808 100%);
+}
+
+.bg-cinematic-fade {
+  background: linear-gradient(180deg, rgba(8, 8, 8, 0.1) 0%, rgba(8, 8, 8, 0.8) 60%, #080808 100%);
+}
+
+/* Atmosphere pulse animations */
+@keyframes atmosphericPulse {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.38;
+    transform: scale(1.05);
+  }
+}
+
+.animate-atmosphere {
+  animation: atmosphericPulse 8s ease-in-out infinite;
+}
+
+/* Smooth transitions */
+.transition-smooth {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Scrollbar customization (Strict Red + Black) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+::-webkit-scrollbar-thumb {
+  background: #1A1A1A;
+  border-radius: 4px;
+  border: 1px solid rgba(209, 10, 32, 0.3);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D10A20;
+}

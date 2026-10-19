@@ -1,0 +1,1901 @@
+/* ==========================================================================
+   ODYSSEY — WARRIOR PERFORMANCE ARENA
+   Design System & Master Stylesheet
+   Strict Roman/Spartan War Saga Aesthetic
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   01. DESIGN TOKENS (Strict Color Palette & Fluid Typography)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Strict Palette */
+  --color-blood: #c1121f;
+  --color-accent: #e63946;
+  --color-black: #070707;
+  --color-charcoal: #121212;
+  --color-surface: #181818;
+  --color-white: #f5f5f5;
+  --color-muted: #a3a3a3;
+  --color-border: rgba(193, 18, 31, 0.28);
+  --color-glow: rgba(193, 18, 31, 0.45);
+  --color-glow-intense: rgba(230, 57, 70, 0.85);
+
+  /* Typography */
+  --font-carved: 'Cinzel', serif;
+  --font-impact: 'Bebas Neue', 'Oswald', sans-serif;
+  --font-body: 'Barlow', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Fluid Spacing */
+  --section-pad-y: clamp(56px, 9vw, 110px);
+  --section-pad-x: clamp(16px, 5vw, 64px);
+  --container-max: 1320px;
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-heavy: 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* --------------------------------------------------------------------------
+   02. RESET & BASE
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  scroll-behavior: smooth;
+  overflow-x: clip;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  line-height: 1.6;
+  overflow-x: clip;
+  width: 100%;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Selection */
+::selection {
+  background: var(--color-blood);
+  color: var(--color-white);
+}
+
+img, svg, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* --------------------------------------------------------------------------
+   03. ATMOSPHERE OVERLAYS (Grain, Vignette, Red Flash)
+   -------------------------------------------------------------------------- */
+/* Vignette */
+.vignette-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 90;
+  background: radial-gradient(circle at 50% 50%, transparent 45%, rgba(0, 0, 0, 0.82) 100%);
+}
+
+/* Film Grain Texture */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 91;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Red Battle Flash */
+#redFlash {
+  position: fixed;
+  inset: 0;
+  background: var(--color-blood);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 0.1s ease-out;
+}
+
+/* --------------------------------------------------------------------------
+   04. STANDARD CURSOR (Natural system cursor restored)
+   -------------------------------------------------------------------------- */
+.custom-cursor {
+  display: none !important;
+}
+
+a, button, [role="button"], input[type="submit"], input[type="button"] {
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   05. SPEAR SCROLL PROGRESS INDICATOR
+   -------------------------------------------------------------------------- */
+.spear-progress-wrap {
+  position: fixed;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 260px;
+  width: 24px;
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.spear-shaft-track {
+  width: 2px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.12);
+  position: relative;
+  overflow: visible;
+}
+
+.spear-shaft-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(to bottom, var(--color-accent), var(--color-blood));
+  box-shadow: 0 0 8px var(--color-blood);
+}
+
+.spear-head-indicator {
+  position: absolute;
+  left: 50%;
+  top: 0%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 26px;
+  transition: top 0.1s ease-out;
+}
+
+.spear-head-indicator svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 8px var(--color-accent));
+}
+
+/* Mobile: thin top scroll bar */
+@media (max-width: 768px) {
+  .spear-progress-wrap {
+    top: 0;
+    right: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: 3px;
+    z-index: 101;
+  }
+  .spear-shaft-track {
+    width: 100%;
+    height: 3px;
+    background: transparent;
+  }
+  .spear-shaft-fill {
+    height: 100%;
+    width: 0%;
+  }
+  .spear-head-indicator {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   06. LOADER: "THE STRIKE & ODYSSEY AWAKENS"
+   -------------------------------------------------------------------------- */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--color-black);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1), visibility 0.8s;
+}
+
+#loader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-stage {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.loader-spear-flight {
+  position: absolute;
+  left: -280px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 220px;
+  height: auto;
+  opacity: 1;
+  filter: drop-shadow(0 0 14px var(--color-accent));
+}
+
+.loader-impact-crater {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-blood) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+}
+
+.loader-title-wrap {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.loader-title {
+  font-family: var(--font-carved);
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: 0.35em;
+  color: var(--color-white);
+  text-transform: uppercase;
+  text-shadow: 0 0 30px rgba(193, 18, 31, 0.8), 0 0 60px rgba(193, 18, 31, 0.4);
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  transition: clip-path 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.loader-title.carved {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.loader-sub {
+  font-family: var(--font-impact);
+  letter-spacing: 0.3em;
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  margin-top: 8px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.loader-sub.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Shake Keyframe (contained) */
+@keyframes warShake {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-4px, 3px); }
+  40% { transform: translate(4px, -3px); }
+  60% { transform: translate(-3px, -2px); }
+  80% { transform: translate(3px, 2px); }
+  100% { transform: translate(0, 0); }
+}
+
+.screen-shake {
+  animation: warShake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* --------------------------------------------------------------------------
+   07. FLOATING MINIMAL HEADER & FULLSCREEN BATTLE MENU
+   -------------------------------------------------------------------------- */
+.header-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: clamp(16px, 2.5vw, 28px) var(--section-pad-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease;
+  background: transparent;
+}
+
+.header-nav.nav-hidden {
+  transform: translateY(-110%);
+}
+
+.header-nav.nav-scrolled {
+  background: rgba(7, 7, 7, 0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(193, 18, 31, 0.22);
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand-helmet-icon {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 0 8px var(--color-blood));
+  transition: transform 0.3s ease;
+}
+
+.brand-link:hover .brand-helmet-icon {
+  transform: rotate(-8deg) scale(1.1);
+}
+
+.brand-title {
+  font-family: var(--font-carved);
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  font-weight: 900;
+  letter-spacing: 0.28em;
+  color: var(--color-white);
+  text-shadow: 0 0 12px rgba(193, 18, 31, 0.6);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-cta-btn {
+  display: none;
+  padding: 10px 22px;
+  background: transparent;
+  border: 1px solid var(--color-blood);
+  color: var(--color-white);
+  font-family: var(--font-impact);
+  letter-spacing: 0.15em;
+  font-size: 0.95rem;
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+  transition: var(--transition-fast);
+}
+
+@media (min-width: 640px) {
+  .header-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.header-cta-btn:hover {
+  background: var(--color-blood);
+  box-shadow: 0 0 20px var(--color-glow-intense);
+  transform: translateY(-2px);
+}
+
+/* Circular Menu Button */
+.menu-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(18, 18, 18, 0.85);
+  border: 1px solid rgba(193, 18, 31, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+.menu-btn:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 20px var(--color-glow);
+  transform: scale(1.05);
+}
+
+.menu-btn .menu-line {
+  width: 20px;
+  height: 2px;
+  background: var(--color-white);
+  transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+}
+
+.menu-btn:hover .menu-line {
+  background: var(--color-accent);
+}
+
+.menu-btn.is-active .menu-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+  background: var(--color-accent);
+}
+
+.menu-btn.is-active .menu-line:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-btn.is-active .menu-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  background: var(--color-accent);
+}
+
+/* Fullscreen Battle Menu Overlay */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 7, 7, 0.97);
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px var(--section-pad-x);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s;
+}
+
+.menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu-nav-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(14px, 2.5vh, 28px);
+}
+
+.menu-nav-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-nav-link {
+  font-family: var(--font-carved);
+  font-size: clamp(1.4rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--color-white);
+  text-transform: uppercase;
+  display: inline-block;
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.menu-nav-link span.roman-idx {
+  color: var(--color-blood);
+  margin-right: 12px;
+  font-family: var(--font-impact);
+  letter-spacing: 0.1em;
+}
+
+.menu-nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 3px;
+  background: var(--color-blood);
+  box-shadow: 0 0 10px var(--color-accent);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.menu-nav-link:hover {
+  color: var(--color-accent);
+  transform: translateX(10px);
+}
+
+.menu-nav-link:hover::after {
+  width: 100%;
+}
+
+.menu-overlay-cta {
+  margin-top: 36px;
+}
+
+/* --------------------------------------------------------------------------
+   08. WAR PAINT / BRUSH STROKE UNDERLINES & DECORATIONS
+   -------------------------------------------------------------------------- */
+.war-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.war-brush-svg {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 14px;
+  fill: var(--color-blood);
+  pointer-events: none;
+  filter: drop-shadow(0 0 6px var(--color-blood));
+}
+
+.chapter-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-impact);
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.chapter-badge::before,
+.chapter-badge::after {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--color-blood);
+}
+
+/* Section Title Generic */
+.section-title-huge {
+  font-family: var(--font-carved);
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1.15;
+  color: var(--color-white);
+  margin-bottom: 20px;
+}
+
+.section-lead {
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  color: var(--color-muted);
+  max-width: 650px;
+  line-height: 1.7;
+}
+
+/* --------------------------------------------------------------------------
+   09. BUTTONS & INTERACTIVE ELEMENTS (Strict Colors)
+   -------------------------------------------------------------------------- */
+.btn-arena {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 14px 34px;
+  background: var(--color-blood);
+  color: var(--color-white);
+  font-family: var(--font-impact);
+  font-size: 1.15rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-blood);
+  clip-path: polygon(14px 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-fast);
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(193, 18, 31, 0.4);
+}
+
+.btn-arena::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transition: transform 0.6s ease;
+}
+
+.btn-arena:hover::before {
+  transform: translateX(200%);
+}
+
+.btn-arena:hover {
+  background: var(--color-accent);
+  box-shadow: 0 0 35px var(--color-glow-intense);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.btn-arena:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.btn-arena .btn-spear-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.25s ease;
+}
+
+.btn-arena:hover .btn-spear-icon {
+  transform: translateX(4px) scale(1.15);
+}
+
+.btn-outline-arena {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 14px 32px;
+  background: rgba(18, 18, 18, 0.5);
+  color: var(--color-white);
+  font-family: var(--font-impact);
+  font-size: 1.15rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  clip-path: polygon(14px 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
+  transition: var(--transition-fast);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.btn-outline-arena:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: rgba(193, 18, 31, 0.15);
+  box-shadow: 0 0 25px rgba(193, 18, 31, 0.3);
+  transform: translateY(-3px);
+}
+
+/* --------------------------------------------------------------------------
+   10. BOOK I: THE CALL (HERO SECTION)
+   -------------------------------------------------------------------------- */
+.hero-section {
+  position: relative;
+  min-height: 100svh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-top: clamp(80px, 12vh, 120px);
+  padding-bottom: clamp(60px, 10vh, 90px);
+  padding-left: var(--section-pad-x);
+  padding-right: var(--section-pad-x);
+  overflow: hidden;
+  background-color: var(--color-black);
+}
+
+/* Hero Background with centurion.jpg & duotone */
+.hero-bg-media {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  filter: contrast(120%) brightness(55%) saturate(140%);
+  transform: scale(1.04);
+  transition: transform 0.8s ease-out;
+}
+
+/* Fiery Red Duotone Gradient Layer */
+.hero-duotone-layer {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(135deg, rgba(193, 18, 31, 0.45) 0%, rgba(7, 7, 7, 0.8) 50%, var(--color-black) 100%),
+    linear-gradient(to top, var(--color-black) 8%, rgba(7, 7, 7, 0.4) 50%, rgba(193, 18, 31, 0.35) 100%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* Ember Particle Canvas */
+#emberCanvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .hero-container {
+    grid-template-columns: 1.25fr 0.85fr;
+  }
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-book-tag {
+  font-family: var(--font-impact);
+  letter-spacing: 0.35em;
+  font-size: clamp(0.9rem, 1.4vw, 1.15rem);
+  color: var(--color-accent);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-book-tag::after {
+  content: '';
+  display: inline-block;
+  width: 45px;
+  height: 2px;
+  background: var(--color-blood);
+  box-shadow: 0 0 8px var(--color-blood);
+}
+
+.hero-title {
+  font-family: var(--font-carved);
+  font-size: clamp(2.8rem, 7.5vw, 6.2rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 0.08em;
+  color: var(--color-white);
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.hero-title .title-line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-title .title-line span {
+  display: block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s ease;
+}
+
+.hero-title .title-line span.glory-red {
+  color: var(--color-accent);
+  text-shadow: 0 0 35px rgba(230, 57, 70, 0.7);
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  color: var(--color-muted);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  max-width: 540px;
+  margin-bottom: 36px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease 0.6s, transform 0.8s ease 0.6s;
+}
+
+/* Revealed Hero State */
+.hero-revealed .hero-title .title-line span {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.hero-revealed .hero-subtitle,
+.hero-revealed .hero-actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   FLOATING SPARTAN HELMET (Card/frame removed, floating freely in arena)
+   -------------------------------------------------------------------------- */
+.hero-helmet-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Soft red/orange ambient fire glow behind the helmet */
+.helmet-ambient-glow {
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(230, 57, 70, 0.42) 0%, rgba(193, 18, 31, 0.24) 45%, transparent 72%);
+  filter: blur(35px);
+  animation: helmetPulse 5s ease-in-out infinite alternate;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes helmetPulse {
+  0% { transform: scale(0.9); opacity: 0.55; }
+  100% { transform: scale(1.18); opacity: 0.95; filter: blur(45px); }
+}
+
+/* Subtle floating animation (slow up-and-down 12px, 6s loop) */
+@keyframes helmetFloat {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.floating-helmet-img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  /* Red/orange firelight rim & deep battle shadow blending into background warrior */
+  filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 25px rgba(230, 57, 70, 0.45));
+  animation: helmetFloat 6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Mobile (360–430px) & Tablet: Centered behind headline with 55–65% width, lower opacity */
+@media (max-width: 991px) {
+  .hero-container {
+    position: relative;
+  }
+  .hero-helmet-visual {
+    position: absolute;
+    top: 14%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 100%;
+    z-index: 1;
+    overflow: hidden;
+    margin-top: 0;
+  }
+  .floating-helmet-img {
+    width: clamp(210px, 60vw, 275px); /* 55–65% of screen width */
+    max-width: 65vw;
+    opacity: 0.55;
+    margin: 0 auto;
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 20px rgba(230, 57, 70, 0.35));
+  }
+  .helmet-ambient-glow {
+    width: 270px;
+    height: 270px;
+    opacity: 0.5;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 3; /* Headline & CTAs remain razor-sharp and easily readable */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-helmet-img {
+    animation: none !important;
+  }
+  .helmet-ambient-glow {
+    animation: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. BOOK II: THE LEGION (ABOUT / WARRIOR PHILOSOPHY)
+   -------------------------------------------------------------------------- */
+.section-legion {
+  position: relative;
+  padding: var(--section-pad-y) var(--section-pad-x);
+  background-color: var(--color-black);
+  overflow: hidden;
+}
+
+/* Giant Faded Watermark "LEGION" */
+.legion-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-carved);
+  font-size: clamp(6rem, 22vw, 24rem);
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.02);
+  letter-spacing: 0.15em;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.legion-container {
+  position: relative;
+  z-index: 3;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .legion-container {
+    grid-template-columns: 1fr 1.15fr;
+  }
+}
+
+/* Diagonal Cut Image Frame */
+.legion-image-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.legion-image-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  clip-path: polygon(0 0, 100% 6%, 94% 100%, 0 94%);
+  border: 1px solid rgba(193, 18, 31, 0.4);
+  background: var(--color-charcoal);
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 35px rgba(193, 18, 31, 0.25);
+}
+
+.legion-image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(125%) saturate(130%) brightness(85%);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.legion-image-frame:hover img {
+  transform: scale(1.06);
+}
+
+.legion-image-duotone {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(193, 18, 31, 0.35), rgba(7, 7, 7, 0.65));
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.legion-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.legion-creed-box {
+  margin-top: 28px;
+  padding: 24px 28px;
+  background: rgba(18, 18, 18, 0.65);
+  border-left: 3px solid var(--color-blood);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+  position: relative;
+}
+
+.legion-creed-text {
+  font-family: var(--font-carved);
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  font-style: italic;
+  color: var(--color-white);
+  line-height: 1.6;
+}
+
+.legion-creed-author {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-impact);
+  letter-spacing: 0.25em;
+  font-size: 0.9rem;
+  color: var(--color-accent);
+}
+
+/* Diagonal Slash Divider into next section */
+.slash-divider {
+  position: relative;
+  width: 100%;
+  height: clamp(50px, 8vw, 100px);
+  background-color: var(--color-black);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.slash-divider-path {
+  position: absolute;
+  inset: 0;
+  background: var(--color-charcoal);
+  clip-path: polygon(0 0, 100% 100%, 100% 100%, 0 100%);
+}
+
+.slash-divider-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), var(--color-blood), transparent);
+  box-shadow: 0 0 10px var(--color-blood);
+  transform: rotate(3.2deg);
+  transform-origin: top left;
+}
+
+/* --------------------------------------------------------------------------
+   12. BOOK III: THE WEAPONS (PROGRAMS — HORIZONTAL / SWIPE)
+   -------------------------------------------------------------------------- */
+.section-weapons {
+  position: relative;
+  padding: var(--section-pad-y) 0;
+  background: var(--color-charcoal);
+  overflow: hidden;
+}
+
+.weapons-header {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--section-pad-x);
+  margin-bottom: clamp(36px, 6vw, 64px);
+}
+
+/* Weapons Carousel Container */
+.weapons-scroll-viewport {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 20px var(--section-pad-x) 40px;
+}
+
+.weapons-scroll-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.weapons-track {
+  display: flex;
+  gap: clamp(20px, 3vw, 36px);
+  width: max-content;
+}
+
+/* Shield-Shaped / Angled Weapon Panel (NO standard rectangular cards!) */
+.weapon-panel {
+  scroll-snap-align: center;
+  position: relative;
+  width: clamp(280px, 80vw, 360px);
+  min-height: 480px;
+  background: radial-gradient(circle at 50% 20%, rgba(30, 30, 30, 0.8), rgba(12, 12, 12, 0.95));
+  border: 1px solid rgba(193, 18, 31, 0.35);
+  clip-path: polygon(24px 0, calc(100% - 24px) 0, 100% 24px, 100% calc(100% - 50px), 50% 100%, 0 calc(100% - 50px), 0 24px);
+  padding: 40px 28px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.weapon-panel:hover {
+  transform: translateY(-8px);
+  border-color: var(--color-accent);
+  box-shadow: 0 15px 40px rgba(193, 18, 31, 0.35);
+}
+
+/* Diagonal Red Slash Cut Effect on Hover */
+.weapon-panel .red-slash {
+  position: absolute;
+  top: -150%;
+  left: -50%;
+  width: 200%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #fff, var(--color-accent), var(--color-blood), transparent);
+  box-shadow: 0 0 18px var(--color-glow-intense);
+  transform: rotate(-35deg);
+  opacity: 0;
+  pointer-events: none;
+  transition: top 0.6s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease;
+}
+
+.weapon-panel:hover .red-slash {
+  top: 150%;
+  opacity: 1;
+}
+
+.weapon-num {
+  font-family: var(--font-impact);
+  font-size: clamp(3rem, 5vw, 4.2rem);
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.08);
+  letter-spacing: 0.1em;
+  transition: color 0.3s ease;
+}
+
+.weapon-panel:hover .weapon-num {
+  color: rgba(230, 57, 70, 0.25);
+}
+
+.weapon-icon-wrap {
+  margin: 16px 0;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weapon-icon-wrap svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--color-accent);
+  filter: drop-shadow(0 0 8px var(--color-blood));
+}
+
+.weapon-title {
+  font-family: var(--font-carved);
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--color-white);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.weapon-discipline {
+  font-family: var(--font-impact);
+  color: var(--color-accent);
+  font-size: 0.95rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.weapon-desc {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+.weapon-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.weapon-tag {
+  font-family: var(--font-impact);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: var(--color-white);
+  opacity: 0.7;
+}
+
+/* --------------------------------------------------------------------------
+   13. BOOK IV: THE CENTURIONS (TRAINERS — STAGGERED OVERLAPPING PORTRAITS)
+   -------------------------------------------------------------------------- */
+.section-centurions {
+  position: relative;
+  padding: var(--section-pad-y) var(--section-pad-x);
+  background-color: var(--color-black);
+  overflow: hidden;
+}
+
+.centurions-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.centurions-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(32px, 5vw, 48px);
+  margin-top: clamp(40px, 6vw, 64px);
+}
+
+@media (min-width: 768px) {
+  .centurions-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.centurion-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 768px) {
+  .centurion-card:nth-child(2) {
+    transform: translateY(35px);
+  }
+  .centurion-card:nth-child(2):hover {
+    transform: translateY(25px);
+  }
+}
+
+.centurion-card:hover {
+  transform: translateY(-8px);
+}
+
+.centurion-portrait-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  clip-path: polygon(0 4%, 96% 0, 100% 96%, 4% 100%);
+  background: var(--color-charcoal);
+  border: 1px solid rgba(193, 18, 31, 0.4);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+}
+
+.centurion-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(120%) brightness(88%);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.centurion-card:hover .centurion-portrait-img {
+  transform: scale(1.08);
+  filter: contrast(125%) brightness(100%);
+}
+
+/* Red Ink-Brush Grunge Frame Overlay */
+.centurion-ink-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7, 7, 7, 0.95) 12%, rgba(193, 18, 31, 0.25) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+.centurion-info {
+  margin-top: 18px;
+}
+
+.centurion-rank {
+  font-family: var(--font-impact);
+  font-size: 0.9rem;
+  letter-spacing: 0.3em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+
+.centurion-name {
+  font-family: var(--font-carved);
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  font-weight: 800;
+  color: var(--color-white);
+  letter-spacing: 0.08em;
+  margin: 4px 0 8px;
+}
+
+.centurion-specialty {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   14. BOOK V: THE TRIALS (STATS & BEFORE/AFTER TRANSFORMATION SLIDER)
+   -------------------------------------------------------------------------- */
+.section-trials {
+  position: relative;
+  padding: var(--section-pad-y) var(--section-pad-x);
+  background: linear-gradient(180deg, var(--color-black) 0%, var(--color-charcoal) 50%, var(--color-black) 100%);
+  overflow: hidden;
+}
+
+.trials-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+/* Typographic Stats Row with Thin Red Glow Dividers (No boxed cards!) */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: clamp(48px, 8vw, 84px);
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .stats-row {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+}
+
+.stat-item {
+  position: relative;
+  padding: clamp(16px, 3vw, 32px);
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  .stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--color-blood), transparent);
+    box-shadow: 0 0 8px var(--color-blood);
+  }
+}
+
+.stat-number {
+  font-family: var(--font-impact);
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  line-height: 1;
+  color: var(--color-white);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 25px rgba(193, 18, 31, 0.45);
+}
+
+.stat-label {
+  font-family: var(--font-carved);
+  font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+  letter-spacing: 0.22em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+/* Transformation Interactive Slider */
+.transformation-showcase {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 2%, 98% 100%, 2% 98%);
+  border: 1px solid rgba(193, 18, 31, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9), 0 0 30px rgba(193, 18, 31, 0.25);
+  user-select: none;
+  cursor: ew-resize;
+  background: var(--color-black);
+}
+
+.slider-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.slider-img.img-before {
+  z-index: 1;
+}
+
+.slider-img-wrap-after {
+  position: absolute;
+  inset: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 2;
+  border-right: 2px solid var(--color-accent);
+  box-shadow: 4px 0 18px var(--color-glow-intense);
+}
+
+.slider-img-wrap-after .slider-img {
+  width: 100%;
+  min-width: 820px; /* matched to container width */
+  height: 100%;
+}
+
+@media (max-width: 850px) {
+  .slider-img-wrap-after .slider-img {
+    min-width: 100vw;
+  }
+}
+
+.slider-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-blood);
+  border: 2px solid var(--color-white);
+  box-shadow: 0 0 20px var(--color-glow-intense);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.slider-handle svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--color-white);
+}
+
+.slider-tag-before,
+.slider-tag-after {
+  position: absolute;
+  bottom: 20px;
+  padding: 6px 14px;
+  font-family: var(--font-impact);
+  letter-spacing: 0.2em;
+  font-size: 0.85rem;
+  z-index: 6;
+  text-transform: uppercase;
+}
+
+.slider-tag-after {
+  left: 20px;
+  background: var(--color-blood);
+  color: var(--color-white);
+}
+
+.slider-tag-before {
+  right: 20px;
+  background: rgba(18, 18, 18, 0.85);
+  color: var(--color-muted);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   15. BOOK VI: THE OATH (MEMBERSHIP & PRICING PLANS)
+   -------------------------------------------------------------------------- */
+.section-oath {
+  position: relative;
+  padding: var(--section-pad-y) var(--section-pad-x);
+  background-color: var(--color-black);
+  overflow: hidden;
+}
+
+.oath-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.oath-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(28px, 4vw, 36px);
+  margin-top: clamp(40px, 6vw, 64px);
+  align-items: stretch;
+}
+
+@media (min-width: 992px) {
+  .oath-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Angled-Corner Membership Panels (NO regular rectangular cards!) */
+.oath-panel {
+  position: relative;
+  background: radial-gradient(circle at 50% 0%, rgba(28, 28, 28, 0.8), rgba(12, 12, 12, 0.95));
+  border: 1px solid rgba(193, 18, 31, 0.3);
+  clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
+  padding: clamp(32px, 4vw, 44px) clamp(20px, 3vw, 32px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.4s ease;
+}
+
+.oath-panel:hover {
+  transform: translateY(-8px);
+  border-color: var(--color-blood);
+  box-shadow: 0 18px 45px rgba(193, 18, 31, 0.3);
+}
+
+/* Middle Highlighted Plan (LEGIONARY) with Red Glow & Ribbon */
+.oath-panel.is-featured {
+  border-color: var(--color-accent);
+  background: radial-gradient(circle at 50% 0%, rgba(193, 18, 31, 0.22), rgba(14, 14, 14, 0.98));
+  box-shadow: 0 0 35px rgba(193, 18, 31, 0.38), inset 0 0 20px rgba(193, 18, 31, 0.15);
+}
+
+@media (min-width: 992px) {
+  .oath-panel.is-featured {
+    transform: scale(1.05);
+  }
+  .oath-panel.is-featured:hover {
+    transform: scale(1.05) translateY(-8px);
+  }
+}
+
+.feared-ribbon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--color-blood);
+  color: var(--color-white);
+  font-family: var(--font-impact);
+  letter-spacing: 0.25em;
+  font-size: 0.75rem;
+  padding: 5px 12px;
+  clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+  box-shadow: 0 0 12px var(--color-glow-intense);
+}
+
+.oath-tier-name {
+  font-family: var(--font-carved);
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--color-white);
+  text-transform: uppercase;
+}
+
+.oath-price-wrap {
+  margin: 18px 0 24px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.oath-currency {
+  font-family: var(--font-impact);
+  font-size: 1.6rem;
+  color: var(--color-accent);
+}
+
+.oath-amount {
+  font-family: var(--font-impact);
+  font-size: clamp(3.2rem, 5vw, 4.4rem);
+  line-height: 1;
+  color: var(--color-white);
+}
+
+.oath-period {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  font-family: var(--font-impact);
+  letter-spacing: 0.15em;
+}
+
+.oath-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.oath-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: var(--color-white);
+}
+
+.oath-check-icon {
+  width: 16px;
+  height: 16px;
+  stroke: var(--color-accent);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   16. FINAL CTA: JOIN THE WAR (FULL-BLEED DARK RED & EMBEDDED SPEAR)
+   -------------------------------------------------------------------------- */
+.section-join {
+  position: relative;
+  padding: clamp(70px, 12vw, 130px) var(--section-pad-x);
+  background: 
+    radial-gradient(circle at 50% 30%, rgba(193, 18, 31, 0.45) 0%, rgba(7, 7, 7, 0.95) 75%),
+    var(--color-black);
+  overflow: hidden;
+  border-top: 2px solid var(--color-blood);
+}
+
+.join-container {
+  position: relative;
+  z-index: 5;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Spear Stuck In Ground Visual */
+.embedded-spear-wrap {
+  position: relative;
+  width: 60px;
+  height: 140px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.embedded-spear-img {
+  width: 44px;
+  height: auto;
+  transform: rotate(-12deg);
+  filter: drop-shadow(0 0 15px var(--color-glow-intense));
+}
+
+.embedded-crater {
+  position: absolute;
+  bottom: 0;
+  width: 50px;
+  height: 12px;
+  background: radial-gradient(ellipse, var(--color-accent) 0%, transparent 70%);
+  filter: blur(2px);
+}
+
+/* Signup Form */
+.war-signup-form {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  text-align: left;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-family: var(--font-impact);
+  font-size: 0.9rem;
+  letter-spacing: 0.25em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(18, 18, 18, 0.85);
+  border: 1px solid rgba(193, 18, 31, 0.4);
+  color: var(--color-white);
+  font-size: 1rem;
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 18px var(--color-glow);
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e63946' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+}
+
+.form-toast {
+  margin-top: 14px;
+  padding: 14px;
+  background: rgba(193, 18, 31, 0.2);
+  border: 1px solid var(--color-blood);
+  color: var(--color-white);
+  font-family: var(--font-carved);
+  letter-spacing: 0.1em;
+  font-size: 0.95rem;
+  display: none;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   17. MINIMAL FOOTER & SOLDIER SILHOUETTE
+   -------------------------------------------------------------------------- */
+.footer-arena {
+  position: relative;
+  background-color: var(--color-black);
+  padding: clamp(48px, 6vw, 72px) var(--section-pad-x) 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.footer-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 28px;
+}
+
+.footer-motto {
+  font-family: var(--font-carved);
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  letter-spacing: 0.25em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(16px, 3vw, 32px);
+}
+
+.footer-link {
+  font-family: var(--font-impact);
+  letter-spacing: 0.2em;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--color-accent);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.footer-date-roman {
+  font-family: var(--font-carved);
+  letter-spacing: 0.2em;
+  color: var(--color-blood);
+}
+
+/* Marching Soldier Silhouette Line across Bottom */
+.marching-soldiers-line {
+  width: 100%;
+  height: 38px;
+  opacity: 0.18;
+  margin-top: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 30' fill='%23c1121f'%3E%3Cpath d='M15 5 l3 8 l-2 4 l3 13 h-4 l-2 -12 l-3 12 h-3 l4 -15 l-2 -3 z M16 3 a2 2 0 1 0 0 -4 a2 2 0 0 0 0 4 z M19 0 l8 14 l-1 1 l-8 -10 z M10 12 l-5 10 h3 l3 -7 z M55 5 l3 8 l-2 4 l3 13 h-4 l-2 -12 l-3 12 h-3 l4 -15 l-2 -3 z M56 3 a2 2 0 1 0 0 -4 a2 2 0 0 0 0 4 z M59 0 l8 14 l-1 1 l-8 -10 z M50 12 l-5 10 h3 l3 -7 z M95 5 l3 8 l-2 4 l3 13 h-4 l-2 -12 l-3 12 h-3 l4 -15 l-2 -3 z M96 3 a2 2 0 1 0 0 -4 a2 2 0 0 0 0 4 z M99 0 l8 14 l-1 1 l-8 -10 z M90 12 l-5 10 h3 l3 -7 z'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 80px 30px;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   18. MOBILE STICKY CTA BAR
+   -------------------------------------------------------------------------- */
+.mobile-sticky-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(7, 7, 7, 0.94);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--color-blood);
+  padding: 12px var(--section-pad-x);
+  z-index: 92;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transform: translateY(110%);
+  transition: transform 0.35s ease;
+}
+
+.mobile-sticky-bar.visible {
+  transform: translateY(0);
+}
+
+.mobile-sticky-text {
+  font-family: var(--font-carved);
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  color: var(--color-white);
+}
+
+@media (min-width: 769px) {
+  .mobile-sticky-bar {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   19. ACCESSIBILITY & PREFERS-REDUCED-MOTION
+   -------------------------------------------------------------------------- */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  #emberCanvas {
+    display: none !important;
+  }
+  .helmet-glow-pulse {
+    animation: none !important;
+  }
+  .screen-shake {
+    animation: none !important;
+  }
+}
