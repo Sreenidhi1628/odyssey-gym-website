@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Send, MapPin, Phone, Mail, Clock, CheckCircle2, AlertCircle, ArrowUpRight } from 'lucide-react'
+import { motion } from 'motion/react'
+import { Send, MapPin, Phone, Mail, Clock, CheckCircle2, AlertCircle } from 'lucide-react'
 
 export default function Contact({ preselectedInterest = '' }) {
   const [formData, setFormData] = useState({
@@ -47,7 +48,7 @@ export default function Contact({ preselectedInterest = '' }) {
     setErrors({})
     setIsSubmitting(true)
 
-    // Form submission processing with real feedback state
+    // Form submission simulation with real feedback
     setTimeout(() => {
       setIsSubmitting(false)
       setIsSubmitted(true)
@@ -57,110 +58,150 @@ export default function Contact({ preselectedInterest = '' }) {
   return (
     <section
       id="enlist"
-      className="relative bg-[#080808] py-28 sm:py-36 lg:py-44 overflow-hidden border-t border-[#1A1A1A]"
+      className="relative bg-[#080808] py-20 sm:py-28 overflow-hidden border-t border-[#A87942]/20"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        {/* Pre-Form Final Cinematic Banner: "YOUR LEGEND STARTS HERE" */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.8 }}
+          className="relative group overflow-hidden border border-[#A87942]/40 bg-[#141414] p-8 sm:p-14 mb-16 text-center flex flex-col items-center justify-center shadow-bronze-subtle"
+        >
+          <div className="absolute inset-0 z-0">
+            <img
+              src="/images/arena_colosseum.webp"
+              alt="Nocturnal colosseum arena with dramatic mist"
+              className="w-full h-full object-cover object-center filter contrast-125 brightness-[30%]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-[#141414]" />
+          </div>
+
+          <div className="relative z-10 max-w-2xl">
+            <span className="text-[10px] font-mono uppercase tracking-[0.35em] text-[#C6A16B] block mb-3 font-bold">
+              THE MOMENT OF DECISION
+            </span>
+            <h2 className="font-condensed text-4xl sm:text-6xl font-bold uppercase text-[#E8E2D8] mb-4 tracking-[0.02em]">
+              YOUR LEGEND <br />
+              <span className="font-cinzel text-[#A87942]">STARTS HERE.</span>
+            </h2>
+            <p className="font-cinzel text-sm sm:text-base text-[#9E9990] italic max-w-lg mb-2">
+              &ldquo;Enter as you are. Leave as a weapon.&rdquo;
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Contact Form Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Left Column: Editorial Information & Real Facility Contact */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
+          {/* Left Column: Direct Comms & Location */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-5 flex flex-col justify-between"
+          >
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <span className="w-8 h-[2px] bg-[#D10A20]" />
-                <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.35em] text-[#D10A20]">
-                  SECTION 09 — COMMUNICATIONS
+                <span className="w-8 h-[2px] bg-[#A87942]" />
+                <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.35em] text-[#C6A16B] font-mono">
+                  SECTION 08 — COMMUNICATIONS
                 </span>
               </div>
 
-              <h2 className="font-cinzel text-4xl sm:text-6xl font-black uppercase text-white tracking-[0.03em] leading-[0.98] mb-6">
+              <h3 className="font-condensed text-3xl sm:text-5xl font-bold uppercase text-[#E8E2D8] mb-4">
                 BEGIN YOUR <br />
-                <span className="text-[#D10A20]">ODYSSEY.</span>
-              </h2>
+                <span className="font-cinzel text-[#A87942]">ODYSSEY.</span>
+              </h3>
 
-              <p className="font-cinzel text-base sm:text-lg text-[#E5E5E5] font-semibold tracking-wide mb-3">
-                &ldquo;Your battle begins the moment you make contact.&rdquo;
+              <p className="text-[#9E9990] text-sm leading-relaxed mb-8 max-w-md">
+                Transmit your credentials to commence your arena onboarding. A Centurion advisor will review your training targets and schedule your trial walkthrough within 24 hours.
               </p>
 
-              <p className="text-[#A6A6A6] text-sm font-light leading-relaxed tracking-wide mb-10 max-w-md">
-                Submit your credentials to commence your arena onboarding. A Centurion advisor will review your training history, answer any questions, and arrange your initial walkthrough.
-              </p>
-
-              {/* Facility Details */}
-              <div className="space-y-6 pt-6 border-t border-[#1A1A1A]">
+              {/* Facility Comms */}
+              <div className="space-y-5 pt-6 border-t border-[#1c1a17]">
                 <div className="flex items-start gap-4">
-                  <div className="p-2.5 bg-[#111111] border border-[#1A1A1A] text-[#D10A20]">
-                    <MapPin className="w-5 h-5" />
+                  <div className="p-2.5 bg-[#141414] border border-[#A87942]/30 text-[#A87942]">
+                    <MapPin className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#A6A6A6] block font-mono">
+                    <span className="text-[9.5px] uppercase tracking-[0.2em] text-[#9E9990] block font-mono">
                       ARENA SANCTUM LOCATION
                     </span>
-                    <p className="text-sm font-semibold text-white mt-0.5">
+                    <p className="text-sm font-semibold text-[#E8E2D8] mt-0.5">
                       742 Gladiators Way, Iron District, Metropolis
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="p-2.5 bg-[#111111] border border-[#1A1A1A] text-[#D10A20]">
-                    <Phone className="w-5 h-5" />
+                  <div className="p-2.5 bg-[#141414] border border-[#A87942]/30 text-[#A87942]">
+                    <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#A6A6A6] block font-mono">
-                      DIRECT COMMS
+                    <span className="text-[9.5px] uppercase tracking-[0.2em] text-[#9E9990] block font-mono">
+                      DIRECT TELEMETRY
                     </span>
-                    <p className="text-sm font-semibold text-white mt-0.5 font-mono">
+                    <p className="text-sm font-semibold text-[#E8E2D8] mt-0.5 font-mono">
                       +1 (800) 480-ODYSSEY / +1 (555) 300-WARS
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="p-2.5 bg-[#111111] border border-[#1A1A1A] text-[#D10A20]">
-                    <Mail className="w-5 h-5" />
+                  <div className="p-2.5 bg-[#141414] border border-[#A87942]/30 text-[#A87942]">
+                    <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#A6A6A6] block font-mono">
+                    <span className="text-[9.5px] uppercase tracking-[0.2em] text-[#9E9990] block font-mono">
                       OFFICIAL DISPATCH
                     </span>
-                    <p className="text-sm font-semibold text-white mt-0.5 font-mono">
+                    <p className="text-sm font-semibold text-[#E8E2D8] mt-0.5 font-mono">
                       enlist@odysseyarena.com
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="p-2.5 bg-[#111111] border border-[#1A1A1A] text-[#FFFFFF]">
-                    <Clock className="w-5 h-5" />
+                  <div className="p-2.5 bg-[#141414] border border-[#A87942]/30 text-[#C6A16B]">
+                    <Clock className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#A6A6A6] block font-mono">
-                      OPERATING HOURS
+                    <span className="text-[9.5px] uppercase tracking-[0.2em] text-[#9E9990] block font-mono">
+                      SANCTUM ACCESS
                     </span>
-                    <p className="text-sm font-semibold text-white mt-0.5">
+                    <p className="text-sm font-semibold text-[#E8E2D8] mt-0.5">
                       24/7 Biometric Legionary Access &bull; Staffed Centurion Hours 05:00 - 23:00
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Column: Premium Enquiry Form */}
-          <div className="lg:col-span-7 bg-[#111111] border border-[#1A1A1A] p-8 sm:p-12 relative">
-            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#D10A20]" />
+          {/* Right Column: Premium Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-7 bg-[#141414] border border-[#A87942]/30 p-8 sm:p-10 relative shadow-bronze-subtle"
+          >
+            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#A87942]" />
 
             {isSubmitted ? (
               <div className="py-12 text-center flex flex-col items-center">
-                <div className="w-16 h-16 bg-[#D10A20]/20 border-2 border-[#D10A20] flex items-center justify-center text-[#D10A20] mb-6 shadow-red-glow">
-                  <CheckCircle2 className="w-8 h-8" />
+                <div className="w-14 h-14 bg-[#A87942]/15 border-2 border-[#A87942] flex items-center justify-center text-[#C6A16B] mb-5 shadow-bronze-glow">
+                  <CheckCircle2 className="w-7 h-7" />
                 </div>
-                <h3 className="font-cinzel text-3xl font-black uppercase text-white tracking-wider mb-3">
-                  ENQUIRY TRANSMITTED
-                </h3>
-                <p className="text-[#A6A6A6] text-sm max-w-md leading-relaxed mb-6">
-                  Welcome, <strong className="text-white">{formData.fullName}</strong>. Your enquiry regarding <strong className="text-[#D10A20]">{formData.interest}</strong> has been received by our Centurion team. We will contact you at <strong className="text-white">{formData.email}</strong> shortly.
+                <h4 className="font-cinzel text-2xl font-bold uppercase text-[#E8E2D8] mb-2 tracking-wider">
+                  ENLISTMENT DISPATCHED
+                </h4>
+                <p className="text-[#9E9990] text-sm max-w-md leading-relaxed mb-6">
+                  Welcome to the arena, <strong className="text-white">{formData.fullName}</strong>. Your inquiry regarding <strong className="text-[#C6A16B]">{formData.interest}</strong> has been logged with Centurion command. We will initiate contact shortly.
                 </p>
                 <button
                   onClick={() => {
@@ -173,15 +214,15 @@ export default function Contact({ preselectedInterest = '' }) {
                       message: '',
                     })
                   }}
-                  className="mt-4 text-xs uppercase tracking-[0.25em] text-[#D10A20] hover:text-white underline font-bold"
+                  className="text-xs uppercase tracking-[0.2em] text-[#A87942] hover:text-[#C6A16B] underline font-bold"
                 >
-                  SEND ANOTHER MESSAGE
+                  TRANSMIT ANOTHER ENLISTMENT
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} noValidate className="space-y-6">
+              <form onSubmit={handleSubmit} noValidate className="space-y-5">
                 <div>
-                  <label htmlFor="fullName" className="block text-xs uppercase tracking-[0.2em] text-[#A6A6A6] font-semibold mb-2 font-mono">
+                  <label htmlFor="fullName" className="block text-[11px] uppercase tracking-[0.2em] text-[#9E9990] font-semibold mb-2 font-mono">
                     FULL NAME *
                   </label>
                   <input
@@ -189,22 +230,22 @@ export default function Contact({ preselectedInterest = '' }) {
                     id="fullName"
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    placeholder="e.g. Marcus Aurelius"
-                    className={`w-full bg-[#080808] border px-4 py-3.5 text-sm text-white placeholder-zinc-700 focus:outline-none transition-colors ${
-                      errors.fullName ? 'border-[#D10A20] focus:ring-1 focus:ring-[#D10A20]' : 'border-[#1A1A1A] focus:border-[#D10A20]'
+                    placeholder="e.g. Odysseus of Ithaca"
+                    className={`w-full bg-[#080808] border px-4 py-3 text-sm text-[#E8E2D8] placeholder-zinc-700 focus:outline-none transition-colors ${
+                      errors.fullName ? 'border-[#7E1717] focus:ring-1 focus:ring-[#7E1717]' : 'border-[#1c1a17] focus:border-[#A87942]'
                     }`}
                   />
                   {errors.fullName && (
-                    <p className="text-xs text-[#D10A20] mt-1.5 flex items-center gap-1 font-mono">
+                    <p className="text-xs text-[#9B1C1C] mt-1.5 flex items-center gap-1 font-mono">
                       <AlertCircle className="w-3.5 h-3.5" />
                       <span>{errors.fullName}</span>
                     </p>
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label htmlFor="email" className="block text-xs uppercase tracking-[0.2em] text-[#A6A6A6] font-semibold mb-2 font-mono">
+                    <label htmlFor="email" className="block text-[11px] uppercase tracking-[0.2em] text-[#9E9990] font-semibold mb-2 font-mono">
                       EMAIL ADDRESS *
                     </label>
                     <input
@@ -213,12 +254,12 @@ export default function Contact({ preselectedInterest = '' }) {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="warrior@odyssey.com"
-                      className={`w-full bg-[#080808] border px-4 py-3.5 text-sm text-white placeholder-zinc-700 focus:outline-none transition-colors ${
-                        errors.email ? 'border-[#D10A20] focus:ring-1 focus:ring-[#D10A20]' : 'border-[#1A1A1A] focus:border-[#D10A20]'
+                      className={`w-full bg-[#080808] border px-4 py-3 text-sm text-[#E8E2D8] placeholder-zinc-700 focus:outline-none transition-colors ${
+                        errors.email ? 'border-[#7E1717] focus:ring-1 focus:ring-[#7E1717]' : 'border-[#1c1a17] focus:border-[#A87942]'
                       }`}
                     />
                     {errors.email && (
-                      <p className="text-xs text-[#D10A20] mt-1.5 flex items-center gap-1 font-mono">
+                      <p className="text-xs text-[#9B1C1C] mt-1.5 flex items-center gap-1 font-mono">
                         <AlertCircle className="w-3.5 h-3.5" />
                         <span>{errors.email}</span>
                       </p>
@@ -226,7 +267,7 @@ export default function Contact({ preselectedInterest = '' }) {
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-xs uppercase tracking-[0.2em] text-[#A6A6A6] font-semibold mb-2 font-mono">
+                    <label htmlFor="phone" className="block text-[11px] uppercase tracking-[0.2em] text-[#9E9990] font-semibold mb-2 font-mono">
                       PHONE NUMBER *
                     </label>
                     <input
@@ -235,12 +276,12 @@ export default function Contact({ preselectedInterest = '' }) {
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+1 (555) 000-0000"
-                      className={`w-full bg-[#080808] border px-4 py-3.5 text-sm text-white placeholder-zinc-700 focus:outline-none transition-colors ${
-                        errors.phone ? 'border-[#D10A20] focus:ring-1 focus:ring-[#D10A20]' : 'border-[#1A1A1A] focus:border-[#D10A20]'
+                      className={`w-full bg-[#080808] border px-4 py-3 text-sm text-[#E8E2D8] placeholder-zinc-700 focus:outline-none transition-colors ${
+                        errors.phone ? 'border-[#7E1717] focus:ring-1 focus:ring-[#7E1717]' : 'border-[#1c1a17] focus:border-[#A87942]'
                       }`}
                     />
                     {errors.phone && (
-                      <p className="text-xs text-[#D10A20] mt-1.5 flex items-center gap-1 font-mono">
+                      <p className="text-xs text-[#9B1C1C] mt-1.5 flex items-center gap-1 font-mono">
                         <AlertCircle className="w-3.5 h-3.5" />
                         <span>{errors.phone}</span>
                       </p>
@@ -249,14 +290,14 @@ export default function Contact({ preselectedInterest = '' }) {
                 </div>
 
                 <div>
-                  <label htmlFor="interest" className="block text-xs uppercase tracking-[0.2em] text-[#A6A6A6] font-semibold mb-2 font-mono">
-                    PREFERRED TRAINING PROGRAM
+                  <label htmlFor="interest" className="block text-[11px] uppercase tracking-[0.2em] text-[#9E9990] font-semibold mb-2 font-mono">
+                    PREFERRED BATTLE DISCIPLINE
                   </label>
                   <select
                     id="interest"
                     value={formData.interest}
                     onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                    className="w-full bg-[#080808] border border-[#1A1A1A] focus:border-[#D10A20] px-4 py-3.5 text-sm text-white focus:outline-none"
+                    className="w-full bg-[#080808] border border-[#1c1a17] focus:border-[#A87942] px-4 py-3 text-sm text-[#E8E2D8] focus:outline-none"
                   >
                     <option value="01 — THE FORGE (Strength & Progressive Overload)">01 — THE FORGE (Strength & Progressive Overload)</option>
                     <option value="02 — WAR MACHINE (Conditioning & Engine)">02 — WAR MACHINE (Conditioning & Engine)</option>
@@ -267,31 +308,30 @@ export default function Contact({ preselectedInterest = '' }) {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-xs uppercase tracking-[0.2em] text-[#A6A6A6] font-semibold mb-2 font-mono">
-                    MESSAGE (OPTIONAL)
+                  <label htmlFor="message" className="block text-[11px] uppercase tracking-[0.2em] text-[#9E9990] font-semibold mb-2 font-mono">
+                    TRAINING OBJECTIVES (OPTIONAL)
                   </label>
                   <textarea
                     id="message"
-                    rows="4"
+                    rows="3"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Share your current fitness level, previous training background, or specific goals..."
-                    className="w-full bg-[#080808] border border-[#1A1A1A] focus:border-[#D10A20] px-4 py-3.5 text-sm text-white placeholder-zinc-700 focus:outline-none"
+                    placeholder="Describe your current lifting benchmarks, athletic background, or targets..."
+                    className="w-full bg-[#080808] border border-[#1c1a17] focus:border-[#A87942] px-4 py-3 text-sm text-[#E8E2D8] placeholder-zinc-700 focus:outline-none"
                   />
                 </div>
 
-                {/* Primary Submit Button: [ ENTER THE ARENA ] */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#D10A20] hover:bg-[#FF1E35] text-white py-4 text-xs uppercase tracking-[0.25em] font-bold transition-all duration-300 shadow-red-glow flex items-center justify-center gap-3 cursor-pointer active:scale-95 disabled:opacity-50"
+                  className="w-full bg-[#A87942] hover:bg-[#C6A16B] text-[#080808] py-3.5 text-xs uppercase tracking-[0.25em] font-bold transition-all duration-300 shadow-bronze-glow flex items-center justify-center gap-2.5 cursor-pointer active:scale-95 disabled:opacity-50"
                 >
-                  <span>{isSubmitting ? 'TRANSMITTING...' : 'ENTER THE ARENA'}</span>
+                  <span>{isSubmitting ? 'DISPATCHING...' : 'ENTER THE ARENA'}</span>
                   <Send className="w-4 h-4" />
                 </button>
               </form>
             )}
-          </div>
+          </motion.div>
 
         </div>
 

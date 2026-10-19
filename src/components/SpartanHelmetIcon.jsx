@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function SpartanHelmetIcon({ className = "w-6 h-6", color = "currentColor", crestColor = "#D10A20" }) {
+export default function SpartanHelmetIcon({ className = "w-6 h-6", color = "#A87942", crestColor = "#7E1717" }) {
   return (
     <svg 
       viewBox="0 0 100 100" 
@@ -9,15 +9,15 @@ export default function SpartanHelmetIcon({ className = "w-6 h-6", color = "curr
       className={className}
       aria-hidden="true"
     >
-      {/* Flowing Spartan Crimson Crest */}
+      {/* Flowing Greek Spartan Crimson Crest */}
       <path 
         d="M20 28 C26 12, 42 6, 58 8 C68 10, 78 16, 84 25 C88 32, 87 40, 84 48 C81 55, 76 60, 72 65 C70 67, 68 64, 69 61 C72 55, 74 48, 73 42 C71 34, 66 28, 58 24 C50 20, 36 21, 24 29 C21 31, 19 30, 20 28 Z" 
         fill={crestColor}
       />
-      {/* Crest mount / base */}
+      {/* Crest mount / bronze base */}
       <path 
         d="M32 25 C42 19, 56 19, 68 25 C70 26, 68 28, 65 29 C54 24, 42 24, 34 29 C32 28, 30 26, 32 25 Z" 
-        fill="#FFFFFF" 
+        fill="#C6A16B" 
       />
       {/* Corinthian Helmet Dome */}
       <path 
@@ -27,7 +27,7 @@ export default function SpartanHelmetIcon({ className = "w-6 h-6", color = "curr
       {/* Nasal Bar & T-slit eye openings */}
       <path 
         d="M48 42 L52 42 L53 66 L59 66 L57 73 L43 73 L41 66 L47 66 Z" 
-        fill={color}
+        fill="#141414"
       />
       {/* Cheek guards & Jawline */}
       <path 
@@ -38,9 +38,9 @@ export default function SpartanHelmetIcon({ className = "w-6 h-6", color = "curr
         d="M74 62 C71 62, 67 65, 66 71 L64 82 C66 85, 70 83, 72 78 L74 69 Z" 
         fill={color} 
       />
-      {/* Dark battle accents */}
-      <circle cx="50" cy="33" r="2" fill="#D10A20" />
-      <path d="M42 35 C47 33, 53 33, 58 35" stroke="#D10A20" strokeWidth="1.5" strokeLinecap="round" />
+      {/* Aged bronze rivets and engravings */}
+      <circle cx="50" cy="33" r="2" fill="#C6A16B" />
+      <path d="M42 35 C47 33, 53 33, 58 35" stroke="#C6A16B" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   )
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 import { Menu, X, ArrowUpRight } from 'lucide-react'
 import SpartanHelmetIcon from './SpartanHelmetIcon'
 
@@ -9,10 +10,10 @@ export default function Navbar({ onClaimClick }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40)
+      setIsScrolled(window.scrollY > 30)
 
-      const sections = ['hero', 'ancient-arena', 'warrior-code', 'training', 'armory', 'ritual', 'legion', 'claim', 'enlist']
-      const scrollPos = window.scrollY + 140
+      const sections = ['hero', 'philosophy', 'arena', 'transformation', 'programs', 'armory', 'trainers', 'membership', 'enlist']
+      const scrollPos = window.scrollY + 120
 
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId)
@@ -32,10 +33,11 @@ export default function Navbar({ onClaimClick }) {
   }, [])
 
   const navLinks = [
-    { name: 'THE ARENA', href: '#ancient-arena', id: 'ancient-arena' },
-    { name: 'THE CODE', href: '#code', id: 'code' },
-    { name: 'TRAINING', href: '#training', id: 'training' },
-    { name: 'THE ARMORY', href: '#armory', id: 'armory' },
+    { name: 'THE ARENA', href: '#arena', id: 'arena' },
+    { name: 'PHILOSOPHY', href: '#philosophy', id: 'philosophy' },
+    { name: 'PROGRAMS', href: '#programs', id: 'programs' },
+    { name: 'ARMORY', href: '#armory', id: 'armory' },
+    { name: 'TRAINERS', href: '#trainers', id: 'trainers' },
     { name: 'MEMBERSHIP', href: '#membership', id: 'membership' },
   ]
 
@@ -44,7 +46,7 @@ export default function Navbar({ onClaimClick }) {
     setMobileMenuOpen(false)
     const element = document.querySelector(href)
     if (element) {
-      const navHeight = 72
+      const navHeight = 70
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
       window.scrollTo({
         top: elementPosition - navHeight,
@@ -58,33 +60,34 @@ export default function Navbar({ onClaimClick }) {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#080808]/96 backdrop-blur-md border-b border-[#1A1A1A] py-3.5 shadow-2xl'
-            : 'bg-gradient-to-b from-[#080808]/90 via-[#080808]/30 to-transparent py-5'
+            ? 'bg-[#080808]/92 backdrop-blur-md border-b border-[#A87942]/25 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.85)]'
+            : 'bg-gradient-to-b from-[#080808]/90 via-[#080808]/40 to-transparent py-4 sm:py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
+          
           {/* Brand Wordmark on Left */}
           <a
             href="#hero"
             onClick={(e) => handleLinkClick(e, '#hero')}
-            className="group flex items-center gap-3.5 focus:outline-none focus:ring-1 focus:ring-[#D10A20]"
-            aria-label="ODYSSEY Home"
+            className="group flex items-center gap-3 focus:outline-none"
+            aria-label="ODYSSEY Athletic Club"
           >
-            <div className="p-1.5 rounded-none bg-[#111111] border border-[#1A1A1A] group-hover:border-[#D10A20] transition-colors">
-              <SpartanHelmetIcon className="w-5 h-5 text-[#D10A20] transition-transform duration-300 group-hover:scale-110" />
+            <div className="p-1.5 bg-[#141414] border border-[#A87942]/40 group-hover:border-[#A87942] group-hover:shadow-bronze-subtle transition-all duration-300">
+              <SpartanHelmetIcon className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
             </div>
             <div className="flex flex-col">
-              <span className="font-cinzel text-xl sm:text-2xl font-black tracking-[0.25em] text-[#FFFFFF] leading-none">
+              <span className="font-cinzel text-xl sm:text-2xl font-black tracking-[0.25em] text-[#E8E2D8] leading-none group-hover:text-white transition-colors">
                 ODYSSEY
               </span>
-              <span className="text-[9px] uppercase tracking-[0.35em] text-[#A6A6A6] mt-1 font-semibold group-hover:text-[#D10A20] transition-colors">
+              <span className="text-[8.5px] uppercase tracking-[0.35em] text-[#A87942] mt-1 font-semibold">
                 WAR FITNESS ARENA
               </span>
             </div>
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-9" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center gap-7" aria-label="Main Navigation">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id
               return (
@@ -92,16 +95,18 @@ export default function Navbar({ onClaimClick }) {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
-                  className={`text-xs uppercase tracking-[0.25em] font-semibold transition-colors relative py-1.5 ${
-                    isActive ? 'text-[#FFFFFF]' : 'text-[#A6A6A6] hover:text-[#FFFFFF]'
+                  className={`text-[11px] uppercase tracking-[0.22em] font-semibold transition-colors relative py-1 ${
+                    isActive ? 'text-[#C6A16B]' : 'text-[#9E9990] hover:text-[#E8E2D8]'
                   }`}
                 >
                   {link.name}
-                  <span
-                    className={`absolute bottom-0 left-0 h-[2px] bg-[#D10A20] transition-all duration-300 ${
-                      isActive ? 'w-full shadow-[0_0_8px_#D10A20]' : 'w-0 group-hover:w-full'
-                    }`}
-                  />
+                  {isActive && (
+                    <motion.span
+                      layoutId="navIndicator"
+                      className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#A87942] shadow-[0_0_8px_#A87942]"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
                 </a>
               )
             })}
@@ -111,9 +116,9 @@ export default function Navbar({ onClaimClick }) {
           <div className="hidden lg:flex items-center">
             <button
               onClick={onClaimClick}
-              className="relative group bg-[#D10A20] hover:bg-[#FF1E35] text-[#FFFFFF] px-6 py-2.5 text-xs uppercase tracking-[0.22em] font-bold transition-all duration-300 shadow-red-glow flex items-center gap-2 cursor-pointer active:scale-95"
+              className="relative group overflow-hidden border border-[#A87942] bg-[#A87942]/10 hover:bg-[#A87942] text-[#E8E2D8] hover:text-[#080808] px-5 py-2.5 text-[11px] uppercase tracking-[0.22em] font-bold transition-all duration-300 shadow-bronze-subtle hover:shadow-bronze-glow flex items-center gap-2 cursor-pointer active:scale-95"
             >
-              <span>CLAIM YOUR PLACE</span>
+              <span>ENTER THE ARENA</span>
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </button>
           </div>
@@ -122,52 +127,58 @@ export default function Navbar({ onClaimClick }) {
           <div className="lg:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-[#A6A6A6] hover:text-[#FFFFFF] focus:outline-none focus:ring-1 focus:ring-[#D10A20] cursor-pointer"
+              className="p-2 text-[#E8E2D8] hover:text-[#A87942] focus:outline-none cursor-pointer"
               aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="w-6 h-6 text-[#D10A20]" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-6 h-6 text-[#A87942]" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Custom Responsive Menu */}
-      <div
-        className={`fixed inset-0 z-40 bg-[#080808]/98 backdrop-blur-xl lg:hidden transition-all duration-300 flex flex-col justify-center px-8 ${
-          mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-      >
-        <div className="flex flex-col gap-6 text-left max-w-sm mx-auto w-full">
-          <div className="flex items-center gap-3 pb-4 border-b border-[#1A1A1A]">
-            <span className="w-3 h-3 bg-[#D10A20]" />
-            <span className="text-[10px] tracking-[0.35em] text-[#D10A20] uppercase font-bold">
-              WAR COMMAND CENTER
-            </span>
-          </div>
-
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => handleLinkClick(e, link.href)}
-              className="font-cinzel text-2xl font-bold tracking-[0.15em] text-[#FFFFFF] hover:text-[#D10A20] transition-colors py-1.5 border-b border-[#1A1A1A]"
-            >
-              {link.name}
-            </a>
-          ))}
-
-          <button
-            onClick={() => {
-              setMobileMenuOpen(false)
-              if (onClaimClick) onClaimClick()
-            }}
-            className="mt-4 bg-[#D10A20] hover:bg-[#FF1E35] text-[#FFFFFF] py-4 text-xs font-bold uppercase tracking-[0.25em] shadow-red-glow text-center"
+      {/* Mobile Navigation Drawer */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-40 bg-[#080808]/98 backdrop-blur-xl lg:hidden flex flex-col justify-center px-8"
           >
-            CLAIM YOUR PLACE
-          </button>
-        </div>
-      </div>
+            <div className="flex flex-col gap-6 text-left max-w-sm mx-auto w-full">
+              <div className="flex items-center gap-3 pb-4 border-b border-[#A87942]/20">
+                <span className="w-2.5 h-2.5 bg-[#A87942]" />
+                <span className="text-[10px] tracking-[0.35em] text-[#C6A16B] uppercase font-bold">
+                  WAR ARENA COMMAND
+                </span>
+              </div>
+
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => handleLinkClick(e, link.href)}
+                  className="font-cinzel text-2xl font-bold tracking-[0.15em] text-[#E8E2D8] hover:text-[#C6A16B] transition-colors py-1.5 border-b border-[#1c1a17]"
+                >
+                  {link.name}
+                </a>
+              ))}
+
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false)
+                  if (onClaimClick) onClaimClick()
+                }}
+                className="mt-4 bg-[#A87942] hover:bg-[#C6A16B] text-[#080808] py-4 text-xs font-bold uppercase tracking-[0.25em] shadow-bronze-glow text-center"
+              >
+                ENTER THE ARENA
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }

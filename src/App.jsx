@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import AncientArena from './components/AncientArena'
-import WarriorCode from './components/WarriorCode'
+import Philosophy from './components/Philosophy'
+import Arena from './components/Arena'
+import Transformation from './components/Transformation'
 import Training from './components/Training'
-import Armory from './components/Armory'
-import TrainingRitual from './components/TrainingRitual'
-import Legion from './components/Legion'
-import ClaimYourPlace from './components/ClaimYourPlace'
+import Membership from './components/Membership'
+import Trainers from './components/Trainers'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
@@ -30,56 +29,51 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#080808] text-white flex flex-col selection:bg-[#D10A20] selection:text-white font-body antialiased">
+    <div className="min-h-screen bg-[#080808] text-[#E8E2D8] flex flex-col selection:bg-[#A87942] selection:text-[#080808] font-body antialiased">
       
-      {/* Ancient Roman/Spartan War Command Navigation */}
+      {/* Command Center Navigation */}
       <Navbar
-        onClaimClick={() => scrollToSection('membership')}
-        onJoinClick={() => scrollToSection('membership')}
+        onClaimClick={() => scrollToSection('enlist', 'Legionary Membership Enlistment')}
       />
 
-      {/* Main Experience: A Cinematic Warrior's Journey */}
+      {/* Main Experience: A Cinematic Greek Warrior's Journey */}
       <main className="flex-grow">
         
-        {/* Section 01: Full-Screen Opening with Monumental Spartan Helmet */}
+        {/* Section 01: Hero — Enter the Arena */}
         <Hero
-          onBeginClick={() => scrollToSection('enlist', 'General Arena Membership & Open Armory')}
-          onDiscoverClick={() => scrollToSection('ancient-arena')}
+          onBeginClick={() => scrollToSection('enlist', 'General Arena Enlistment')}
+          onDiscoverClick={() => scrollToSection('philosophy')}
         />
 
-        {/* Section 02: The Ancient Arena */}
-        <AncientArena onExploreClick={() => scrollToSection('training')} />
+        {/* Section 02: The Philosophy — Comfort Builds Nothing */}
+        <Philosophy onExploreClick={() => scrollToSection('arena')} />
 
-        {/* Section 03: The Warrior's Code (Inscribed In Stone) */}
-        <WarriorCode />
+        {/* Section 03: The Training Arena — Editorial Hardware Grid */}
+        <Arena onEnlistClick={() => scrollToSection('enlist')} />
 
-        {/* Section 04: Choose Your Battle (Training Disciplines) */}
+        {/* Section 04: The Transformation — The Crucible */}
+        <Transformation onEnlistClick={() => scrollToSection('enlist')} />
+
+        {/* Section 05: Training Programs — Choose Your Battle */}
         <Training
           onSelectProgramForInquiry={(programTitle) => scrollToSection('enlist', programTitle)}
         />
 
-        {/* Section 05: The Armory (Modern Steel Meets Ancient Atmosphere) */}
-        <Armory onExploreClick={() => scrollToSection('training')} />
-
-        {/* Section 06: The Training Ritual (3-Stage Horizontal Timeline) */}
-        <TrainingRitual onEnlistClick={() => scrollToSection('enlist')} />
-
-        {/* Section 07: The Legion (Camaraderie & Real Community) */}
-        <Legion />
-
-        {/* Section 08: Claim Your Place (Membership) */}
-        <ClaimYourPlace
-          onJoinClick={() => scrollToSection('enlist', 'Warrior Command Membership')}
-          onSpeakTeamClick={() => scrollToSection('enlist', 'Membership Enquiry / Team Discussion')}
+        {/* Section 06: Membership — Claim Your Place */}
+        <Membership
           onSelectTier={(tierName) => scrollToSection('enlist', `${tierName} Membership`)}
+          onSpeakTeamClick={() => scrollToSection('enlist', 'Custom Squad Enlistment')}
         />
 
-        {/* Section 09: Begin Your Odyssey (Contact & Communications) */}
+        {/* Section 07: Centurion Trainers & The Legion Community */}
+        <Trainers onEnlistClick={() => scrollToSection('enlist', '1-on-1 Centurion Mentorship')} />
+
+        {/* Section 08: Final CTA & Communications Enlistment */}
         <Contact preselectedInterest={selectedInterest} />
 
       </main>
 
-      {/* Footer */}
+      {/* Compact Elegant Footer */}
       <Footer />
 
     </div>
