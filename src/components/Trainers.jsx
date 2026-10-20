@@ -76,14 +76,14 @@ export default function Trainers({ onEnlistClick }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.7, delay: idx * 0.12 }}
-              className="group relative bg-[#0D0D0D] border border-[#201E1C] hover:border-[#9E1B1B] transition-all duration-500 overflow-hidden flex flex-col justify-between shadow-stone-drop"
+              className="group relative bg-[#0D0D0D] border border-[#201E1C] hover:border-[#9E1B1B] transition-all duration-500 overflow-hidden flex flex-col justify-between shadow-stone-drop card-lift cursor-pointer"
             >
               {/* Portrait Photography with Smooth Zoom */}
               <div className="relative h-80 overflow-hidden bg-[#050505]">
                 <img
                   src={trainer.image}
                   alt={trainer.alt}
-                  className="w-full h-full object-cover object-top filter contrast-125 brightness-[78%] group-hover:scale-105 group-hover:brightness-[90%] transition-transform duration-700 ease-out"
+                  className="w-full h-full object-cover object-top filter contrast-125 brightness-[78%] group-hover:brightness-[90%] transition-transform duration-700 ease-out card-bg-zoom"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] via-[#0D0D0D]/40 to-transparent" />

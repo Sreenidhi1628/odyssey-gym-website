@@ -115,23 +115,39 @@ export default function Armory({ onExploreClick }) {
           ))}
         </div>
 
-        {/* Armory Specs Metric Ribbon */}
-        <div className="mt-16 p-8 bg-[#111111] border border-[#1A1A1A] grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          <div>
-            <div className="font-cinzel text-3xl sm:text-4xl font-black text-white">14,000<span className="text-[#D10A20] text-xl">SQ FT</span></div>
-            <div className="text-[10px] uppercase tracking-[0.25em] text-[#A6A6A6] mt-2 font-mono">ARENA CAPACITY</div>
+        {/* Armory Specs Open Editorial Statistics (Unboxed, clean editorial composition directly on section background) */}
+        <div className="mt-20 sm:mt-24 pt-12 border-t border-[#1A1A1A]/60 grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 text-left sm:text-center">
+          <div className="space-y-1.5">
+            <div className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+              14,000<span className="text-[#D10A20] text-xl sm:text-2xl font-bold ml-1.5">SQ FT</span>
+            </div>
+            <div className="text-[10px] sm:text-[11px] uppercase tracking-[0.28em] text-[#A6A6A6] font-mono">
+              ARENA CAPACITY
+            </div>
           </div>
-          <div>
-            <div className="font-cinzel text-3xl sm:text-4xl font-black text-[#D10A20]">12<span className="text-white text-xl">PLATFORMS</span></div>
-            <div className="text-[10px] uppercase tracking-[0.25em] text-[#A6A6A6] mt-2 font-mono">OLYMPIC STATIONS</div>
+          <div className="space-y-1.5">
+            <div className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-black text-[#D10A20] tracking-tight">
+              12<span className="text-white text-xl sm:text-2xl font-bold ml-1.5">PLATFORMS</span>
+            </div>
+            <div className="text-[10px] sm:text-[11px] uppercase tracking-[0.28em] text-[#A6A6A6] font-mono">
+              OLYMPIC STATIONS
+            </div>
           </div>
-          <div>
-            <div className="font-cinzel text-3xl sm:text-4xl font-black text-white">50<span className="text-[#D10A20] text-xl">M</span></div>
-            <div className="text-[10px] uppercase tracking-[0.25em] text-[#A6A6A6] mt-2 font-mono">TACTICAL SPRINT TURF</div>
+          <div className="space-y-1.5">
+            <div className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+              50<span className="text-[#D10A20] text-xl sm:text-2xl font-bold ml-1.5">M</span>
+            </div>
+            <div className="text-[10px] sm:text-[11px] uppercase tracking-[0.28em] text-[#A6A6A6] font-mono">
+              TACTICAL SPRINT TURF
+            </div>
           </div>
-          <div>
-            <div className="font-cinzel text-3xl sm:text-4xl font-black text-white">24<span className="text-[#D10A20] text-xl">/7</span></div>
-            <div className="text-[10px] uppercase tracking-[0.25em] text-[#A6A6A6] mt-2 font-mono">BIOMETRIC ACCESS</div>
+          <div className="space-y-1.5">
+            <div className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+              24<span className="text-[#D10A20] text-xl sm:text-2xl font-bold ml-1.5">/7</span>
+            </div>
+            <div className="text-[10px] sm:text-[11px] uppercase tracking-[0.28em] text-[#A6A6A6] font-mono">
+              BIOMETRIC ACCESS
+            </div>
           </div>
         </div>
 

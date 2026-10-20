@@ -12,7 +12,7 @@ export default function Navbar({ onClaimClick }) {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30)
 
-      const sections = ['hero', 'code', 'arena', 'disciplines', 'crucible', 'legion', 'enlist']
+      const sections = ['hero', 'code', 'training', 'armory', 'ritual', 'legion', 'membership', 'enlist']
       const scrollPos = window.scrollY + 140
 
       for (const sectionId of sections) {
@@ -33,12 +33,11 @@ export default function Navbar({ onClaimClick }) {
   }, [])
 
   const navLinks = [
-    { name: 'I. THE CODE', href: '#code', id: 'code' },
-    { name: 'II. THE ARENA', href: '#arena', id: 'arena' },
-    { name: 'III. DISCIPLINES', href: '#disciplines', id: 'disciplines' },
-    { name: 'IV. CRUCIBLE', href: '#crucible', id: 'crucible' },
-    { name: 'V. THE LEGION', href: '#legion', id: 'legion' },
-    { name: 'VI. ENLIST', href: '#enlist', id: 'enlist' },
+    { name: 'THE CODE', href: '#code', id: 'code' },
+    { name: 'TRAINING', href: '#training', id: 'training' },
+    { name: 'THE ARMORY', href: '#armory', id: 'armory' },
+    { name: 'THE RITUAL', href: '#ritual', id: 'ritual' },
+    { name: 'MEMBERSHIP', href: '#membership', id: 'membership' },
   ]
 
   const handleLinkClick = (e, href) => {
@@ -60,7 +59,7 @@ export default function Navbar({ onClaimClick }) {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#050505]/95 backdrop-blur-md border-b border-[#9E1B1B]/30 py-3 shadow-[0_10px_35px_rgba(0,0,0,0.9)]'
+            ? 'bg-[#050505]/92 backdrop-blur-md border-b border-[#9E1B1B]/30 py-2.5 sm:py-3 shadow-[0_10px_35px_rgba(0,0,0,0.9)]'
             : 'bg-gradient-to-b from-[#050505]/95 via-[#050505]/50 to-transparent py-4 sm:py-5'
         }`}
       >
@@ -86,7 +85,7 @@ export default function Navbar({ onClaimClick }) {
             </div>
           </a>
 
-          {/* Minimalist Chapter Navigation */}
+          {/* Minimalist Chapter Navigation with Hover Underline */}
           <nav className="hidden lg:flex items-center gap-7" aria-label="Main Navigation">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id
@@ -95,8 +94,8 @@ export default function Navbar({ onClaimClick }) {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
-                  className={`text-[10.5px] uppercase tracking-[0.22em] font-semibold transition-colors relative py-1 ${
-                    isActive ? 'text-white' : 'text-[#8E8A82] hover:text-white'
+                  className={`text-[10.5px] uppercase tracking-[0.22em] font-semibold transition-colors relative py-1 nav-link-underline ${
+                    isActive ? 'text-white font-bold' : 'text-[#8E8A82] hover:text-white'
                   }`}
                 >
                   {link.name}
@@ -112,11 +111,11 @@ export default function Navbar({ onClaimClick }) {
             })}
           </nav>
 
-          {/* Primary Action Button */}
+          {/* Primary Action Button with Shine Sweep & Glowing Pulse */}
           <div className="hidden lg:flex items-center">
             <button
               onClick={onClaimClick}
-              className="relative group overflow-hidden bg-[#9E1B1B] hover:bg-[#C1121F] text-white px-5 py-2.5 text-[11px] uppercase tracking-[0.22em] font-bold transition-all duration-300 shadow-crimson-subtle hover:shadow-crimson-glow flex items-center gap-2 cursor-pointer active:scale-95"
+              className="relative group overflow-hidden bg-[#9E1B1B] hover:bg-[#C1121F] text-white px-5 py-2.5 text-[11px] uppercase tracking-[0.22em] font-bold transition-all duration-300 shadow-crimson-subtle flex items-center gap-2 cursor-pointer active:scale-95 shine-sweep glow-pulse"
             >
               <span>CLAIM YOUR PLACE</span>
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

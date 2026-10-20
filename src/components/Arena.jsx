@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'motion/react'
 import { ArrowUpRight } from 'lucide-react'
+import AnimatedCounter from './AnimatedCounter'
 
 export default function Arena({ onEnlistClick }) {
   const arenaChambers = [
@@ -49,7 +50,7 @@ export default function Arena({ onEnlistClick }) {
   return (
     <section
       id="arena"
-      className="relative bg-[#050505] py-24 sm:py-32 overflow-hidden border-t border-[#181818]"
+      className="relative bg-[#050505] pt-20 sm:pt-28 pb-8 sm:pb-10 overflow-hidden border-t border-[#181818]"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         
@@ -94,14 +95,14 @@ export default function Arena({ onEnlistClick }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.7, delay: idx * 0.1 }}
-              className={`relative group overflow-hidden border border-[#201E1C] hover:border-[#9E1B1B] bg-[#0D0D0D] ${chamber.height} flex flex-col justify-end p-6 sm:p-8 transition-colors duration-500 ${chamber.span}`}
+              className={`relative group overflow-hidden border border-[#201E1C] bg-[#0D0D0D] ${chamber.height} flex flex-col justify-end p-6 sm:p-8 card-lift cursor-pointer ${chamber.span}`}
             >
               {/* Background Photography with Slow Motion Scale */}
               <div className="absolute inset-0 z-0">
                 <img
                   src={chamber.image}
                   alt={chamber.alt}
-                  className="w-full h-full object-cover object-center filter contrast-125 brightness-[52%] group-hover:scale-105 group-hover:brightness-[68%] transition-all duration-700 ease-out"
+                  className="w-full h-full object-cover object-center filter contrast-125 brightness-[52%] group-hover:brightness-[68%] transition-all duration-700 ease-out card-bg-zoom"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/65 to-transparent" />
@@ -135,43 +136,48 @@ export default function Arena({ onEnlistClick }) {
           ))}
         </div>
 
-        {/* Tactical Facility Metrics Banner */}
+        {/* Tactical Facility Metrics Banner (14,000 SQ FT / 12 PLATFORMS / 50M / 24/7) */}
         <motion.div
+          id="statsStrip"
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
+          viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.8 }}
-          className="mt-14 p-8 bg-[#0D0D0D] border border-[#201E1C] grid grid-cols-2 md:grid-cols-4 gap-6 text-center"
+          className="relative z-20 mt-12 p-8 bg-[#0D0D0D] border border-[#201E1C] grid grid-cols-2 md:grid-cols-4 gap-6 text-center shadow-[0_4px_30px_rgba(0,0,0,0.85)]"
         >
-          <div>
+          <div className="group/stat">
             <div className="font-cinzel text-3xl sm:text-4xl font-black text-white">
-              14,000<span className="text-[#C1121F] text-xl">SQ FT</span>
+              <AnimatedCounter end={14000} separator="," />
+              <span className="text-[#C1121F] text-xl ml-1">SQ FT</span>
             </div>
-            <div className="text-[10px] uppercase tracking-[0.25em] text-[#8E8A82] mt-1 font-mono">
+            <div className="text-[10px] uppercase tracking-[0.25em] text-[#8E8A82] mt-1 font-mono group-hover/stat:text-white transition-colors">
               ARENA CAPACITY
             </div>
           </div>
-          <div>
+          <div className="group/stat">
             <div className="font-cinzel text-3xl sm:text-4xl font-black text-[#C1121F]">
-              12<span className="text-white text-xl">STATIONS</span>
+              <AnimatedCounter end={12} />
+              <span className="text-white text-xl ml-1">PLATFORMS</span>
             </div>
-            <div className="text-[10px] uppercase tracking-[0.25em] text-[#8E8A82] mt-1 font-mono">
-              OLYMPIC PLATFORMS
+            <div className="text-[10px] uppercase tracking-[0.25em] text-[#8E8A82] mt-1 font-mono group-hover/stat:text-white transition-colors">
+              OLYMPIC STATIONS
             </div>
           </div>
-          <div>
+          <div className="group/stat">
             <div className="font-cinzel text-3xl sm:text-4xl font-black text-white">
-              50<span className="text-[#C1121F] text-xl">M</span>
+              <AnimatedCounter end={50} />
+              <span className="text-[#C1121F] text-xl ml-1">M</span>
             </div>
-            <div className="text-[10px] uppercase tracking-[0.25em] text-[#8E8A82] mt-1 font-mono">
+            <div className="text-[10px] uppercase tracking-[0.25em] text-[#8E8A82] mt-1 font-mono group-hover/stat:text-white transition-colors">
               TACTICAL SPRINT TURF
             </div>
           </div>
-          <div>
+          <div className="group/stat">
             <div className="font-cinzel text-3xl sm:text-4xl font-black text-white">
-              24<span className="text-[#C1121F] text-xl">/7</span>
+              <AnimatedCounter end={24} />
+              <span className="text-[#C1121F] text-xl ml-1">/7</span>
             </div>
-            <div className="text-[10px] uppercase tracking-[0.25em] text-[#8E8A82] mt-1 font-mono">
+            <div className="text-[10px] uppercase tracking-[0.25em] text-[#8E8A82] mt-1 font-mono group-hover/stat:text-white transition-colors">
               BIOMETRIC ACCESS
             </div>
           </div>
@@ -181,3 +187,4 @@ export default function Arena({ onEnlistClick }) {
     </section>
   )
 }
+

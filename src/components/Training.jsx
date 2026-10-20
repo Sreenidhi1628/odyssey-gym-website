@@ -98,6 +98,7 @@ export default function Training({ onSelectProgramForInquiry }) {
       id="disciplines"
       className="relative bg-[#050505] py-24 sm:py-32 overflow-hidden border-t border-[#181818]"
     >
+      <div id="training" className="absolute -top-24 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         
         {/* Chapter Header */}
@@ -178,15 +179,17 @@ export default function Training({ onSelectProgramForInquiry }) {
 
               <div className="flex flex-wrap items-center gap-4">
                 <button
+                  type="button"
                   onClick={() => setActiveModalProgram(featured)}
-                  className="bg-[#9E1B1B] hover:bg-[#C1121F] text-white px-6 py-3 text-xs uppercase tracking-[0.25em] font-bold transition-all duration-300 shadow-crimson-glow flex items-center gap-2 cursor-pointer"
+                  className="bg-[#9E1B1B] hover:bg-[#C1121F] text-white px-6 py-3 text-xs uppercase tracking-[0.25em] font-bold transition-all duration-300 shadow-crimson-glow flex items-center gap-2 cursor-pointer shine-sweep"
                 >
                   <span>EXPLORE CURRICULUM</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </button>
                 <button
+                  type="button"
                   onClick={() => onSelectProgramForInquiry(featured.title)}
-                  className="border border-[#201E1C] hover:border-white text-white px-6 py-3 text-xs uppercase tracking-[0.25em] font-semibold transition-colors cursor-pointer"
+                  className="border border-[#201E1C] hover:border-white text-white px-6 py-3 text-xs uppercase tracking-[0.25em] font-semibold transition-colors cursor-pointer bg-[#0D0D0D]/80"
                 >
                   <span>ENLIST IN THIS PROTOCOL</span>
                 </button>
@@ -203,7 +206,7 @@ export default function Training({ onSelectProgramForInquiry }) {
                 <div
                   key={item.id}
                   onClick={() => setSelectedFeaturedIndex(idx)}
-                  className={`p-5 sm:p-6 border transition-all duration-300 cursor-pointer flex items-center justify-between group ${
+                  className={`p-5 sm:p-6 border transition-all duration-300 cursor-pointer flex items-center justify-between group card-lift ${
                     isSelected
                       ? 'bg-[#121212] border-[#9E1B1B] shadow-[0_0_20px_rgba(158,27,27,0.3)]'
                       : 'bg-[#0D0D0D] border-[#181818] hover:border-[#201E1C] hover:bg-[#121212]'

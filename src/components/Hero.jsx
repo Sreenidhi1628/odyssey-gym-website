@@ -108,7 +108,7 @@ export default function Hero({ onBeginClick, onDiscoverClick }) {
           >
             <button
               onClick={onBeginClick}
-              className="group relative bg-[#9E1B1B] hover:bg-[#C1121F] text-white px-8 py-3.5 text-xs uppercase tracking-[0.22em] font-bold transition-all duration-300 shadow-crimson-glow flex items-center justify-center gap-3 cursor-pointer active:scale-95"
+              className="group relative bg-[#9E1B1B] hover:bg-[#C1121F] text-white px-8 py-3.5 text-xs uppercase tracking-[0.22em] font-bold transition-all duration-300 shadow-crimson-glow flex items-center justify-center gap-3 cursor-pointer active:scale-95 shine-sweep glow-pulse"
             >
               <span>COMMENCE THE ODYSSEY</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />

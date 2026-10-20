@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
+import ScrollProgressBar from './components/ScrollProgressBar'
+import EmberCanvas from './components/EmberCanvas'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import WarriorCode from './components/WarriorCode'
-import Arena from './components/Arena'
 import Training from './components/Training'
-import Transformation from './components/Transformation'
-import Trainers from './components/Trainers'
-import Membership from './components/Membership'
+import Armory from './components/Armory'
+import TrainingRitual from './components/TrainingRitual'
+import Legion from './components/Legion'
+import ClaimYourPlace from './components/ClaimYourPlace'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
@@ -29,51 +31,64 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] text-[#E5E2DC] flex flex-col selection:bg-[#9E1B1B] selection:text-white font-body antialiased">
+    <div className="min-h-screen bg-[#080808] text-white flex flex-col selection:bg-[#D10A20] selection:text-white font-body antialiased relative">
       
-      {/* Chapter-Based Ancient War Command Navigation */}
+      {/* 3px Red Scroll Progress Bar pinned at the top */}
+      <ScrollProgressBar />
+
+      {/* Atmospheric slow floating red ember & dust particles */}
+      <EmberCanvas />
+
+      {/* Ancient Roman/Spartan War Command Navigation */}
       <Navbar
-        onClaimClick={() => scrollToSection('enlist', 'Legionary Membership Enlistment')}
+        onClaimClick={() => scrollToSection('membership')}
+        onJoinClick={() => scrollToSection('membership')}
       />
 
       {/* Main Experience: A Cinematic Warrior's Journey */}
-      <main className="flex-grow">
+      <main className="flex-grow relative z-10">
         
-        {/* Prologue: The Call to War (Sculptural Helmet & Monumental Typography) */}
+        {/* Section 01: Full-Screen Opening with Monumental Spartan Helmet */}
         <Hero
-          onBeginClick={() => scrollToSection('enlist', 'General Arena Enlistment')}
+          onBeginClick={() => scrollToSection('enlist', 'General Arena Membership & Open Armory')}
           onDiscoverClick={() => scrollToSection('code')}
         />
 
-        {/* Chapter I: The Sacred Code (Ancient Stone Inscription) */}
+        {/* Section 02 (Ancient Arena) has been COMPLETELY REMOVED per Change 1 */}
+
+        {/* Section 03: The Warrior's Code (Inscribed In Stone) */}
         <WarriorCode />
 
-        {/* Chapter II: Forged in Battle (The Training Sanctum & Hardware) */}
-        <Arena onEnlistClick={() => scrollToSection('enlist')} />
-
-        {/* Chapter III: Combat Disciplines (The 4 Training Curricula) */}
+        {/* Section 04: Choose Your Battle (Training Disciplines) */}
         <Training
           onSelectProgramForInquiry={(programTitle) => scrollToSection('enlist', programTitle)}
         />
 
-        {/* Chapter IV: The Crucible (Physical Progress & Metamorphic Overload) */}
-        <Transformation onEnlistClick={() => scrollToSection('enlist')} />
+        {/* Section 05: The Armory (Facility & Hardware with unboxed editorial statistics) */}
+        <Armory onExploreClick={() => scrollToSection('training')} />
 
-        {/* Chapter V: Centurions & The Legion (Commanders & Community) */}
-        <Trainers onEnlistClick={() => scrollToSection('enlist', '1-on-1 Centurion Mentorship')} />
-
-        {/* Chapter VI: Earn Your Legacy (Stone Tablet Membership) */}
-        <Membership
-          onSelectTier={(tierName) => scrollToSection('enlist', `${tierName} Membership`)}
-          onSpeakTeamClick={() => scrollToSection('enlist', 'Custom Squad Enlistment')}
+        {/* Section 06: The Training Ritual (3-Stage Pathway with validated functional PROCEED interaction) */}
+        <TrainingRitual
+          onEnlistClick={(stageTitle) => scrollToSection('enlist', stageTitle)}
+          onExploreTrainingClick={() => scrollToSection('training')}
         />
 
-        {/* The Final Trial: The Warrior's Oath & Enlistment */}
+        {/* Section 07: The Legion (Camaraderie & Real Community) */}
+        <Legion />
+
+        {/* Section 08: Claim Your Place (Membership & Enlistment with Dark Odyssey Helmet Visual) */}
+        <ClaimYourPlace
+          onJoinClick={() => scrollToSection('enlist', 'Warrior Command Membership')}
+          onSpeakTeamClick={() => scrollToSection('enlist', 'Membership Enquiry / Team Discussion')}
+          onSelectTier={(tierName) => scrollToSection('enlist', `${tierName} Membership`)}
+        />
+
+        {/* Section 09: Begin Your Odyssey (Contact & Communications) */}
         <Contact preselectedInterest={selectedInterest} />
 
       </main>
 
-      {/* The Final Oath Footer */}
+      {/* Compact Elegant Footer */}
       <Footer />
 
     </div>
