@@ -1,6 +1,6 @@
 import React from 'react'
 import SpartanHelmetIcon from './SpartanHelmetIcon'
-import { ArrowUp } from 'lucide-react'
+import { ArrowUp, MapPin, Clock } from 'lucide-react'
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -21,91 +21,72 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative bg-[#050505] border-t border-[#181818] pt-16 pb-10 overflow-hidden">
-      
-      {/* Background Odyssey Watermark */}
-      <div 
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 font-cinzel text-[14vw] font-black text-white/[0.015] tracking-[0.2em] whitespace-nowrap pointer-events-none select-none z-0"
-        aria-hidden="true"
-      >
-        ODYSSEY
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
+    <footer className="relative bg-[#050505] border-t border-[#1A1A1A] py-12 sm:py-16 text-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-12 border-b border-[#181818]">
+        {/* Main Clean Row: Brand + Essential Gym Details + Return To Top */}
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 pb-10 border-b border-[#1A1A1A]">
           
-          {/* Brand Bio */}
-          <div className="lg:col-span-5 flex flex-col items-start">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-1.5 bg-[#0D0D0D] border border-[#201E1C]">
-                <SpartanHelmetIcon className="w-5 h-5" />
-              </div>
-              <span className="font-cinzel text-xl font-bold tracking-[0.2em] text-white">
-                ODYSSEY
-              </span>
+          {/* Brand Identity & Motto */}
+          <div className="flex items-center gap-4">
+            <div className="p-2 bg-[#0D0D0D] border border-[#201E1C]">
+              <SpartanHelmetIcon className="w-6 h-6 text-[#D10A20]" />
             </div>
-
-            <p className="font-cinzel text-sm text-[#C1121F] font-bold tracking-wider mb-2">
-              YOUR BATTLE. YOUR LEGACY.
-            </p>
-
-            <p className="text-[#8E8A82] text-xs font-light leading-relaxed max-w-sm mb-4">
-              An epic ancient warrior saga transformed into a modern high-performance arena. We do not negotiate with human potential.
-            </p>
-            <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C1121F]">
-              &ldquo;BECOME THE WEAPON.&rdquo;
-            </p>
-          </div>
-
-          {/* Nav Links */}
-          <div className="lg:col-span-3">
-            <span className="text-[9.5px] uppercase tracking-[0.3em] text-[#C1121F] font-bold block mb-3 font-mono">
-              WARRIOR CHAPTERS
-            </span>
-            <ul className="space-y-2 text-xs uppercase tracking-[0.18em] text-[#8E8A82]">
-              <li><a href="#hero" onClick={(e) => handleLinkClick(e, '#hero')} className="hover:text-white transition-colors">PROLOGUE // THE CALL</a></li>
-              <li><a href="#code" onClick={(e) => handleLinkClick(e, '#code')} className="hover:text-white transition-colors">I. THE SACRED CODE</a></li>
-              <li><a href="#arena" onClick={(e) => handleLinkClick(e, '#arena')} className="hover:text-white transition-colors">II. THE ARENA SANCTUM</a></li>
-              <li><a href="#disciplines" onClick={(e) => handleLinkClick(e, '#disciplines')} className="hover:text-white transition-colors">III. COMBAT DISCIPLINES</a></li>
-              <li><a href="#crucible" onClick={(e) => handleLinkClick(e, '#crucible')} className="hover:text-white transition-colors">IV. THE CRUCIBLE</a></li>
-              <li><a href="#legion" onClick={(e) => handleLinkClick(e, '#legion')} className="hover:text-white transition-colors">V. THE LEGION</a></li>
-              <li><a href="#membership" onClick={(e) => handleLinkClick(e, '#membership')} className="hover:text-white transition-colors">VI. MEMBERSHIP</a></li>
-            </ul>
-          </div>
-
-          {/* Communications & Back to Top */}
-          <div className="lg:col-span-4 flex flex-col justify-between items-start lg:items-end">
             <div>
-              <span className="text-[9.5px] uppercase tracking-[0.3em] text-[#C1121F] font-bold block mb-3 font-mono">
-                COMMUNICATIONS
-              </span>
-              <div className="flex flex-col gap-1.5 text-xs uppercase tracking-[0.18em] text-[#8E8A82]">
-                <a href="#enlist" onClick={(e) => handleLinkClick(e, '#enlist')} className="hover:text-white transition-colors">ENQUIRIES & ADMISSIONS</a>
-                <a href="#enlist" onClick={(e) => handleLinkClick(e, '#enlist')} className="hover:text-white transition-colors">INSTAGRAM &bull; @ODYSSEYWARARENA</a>
-                <a href="#enlist" onClick={(e) => handleLinkClick(e, '#enlist')} className="hover:text-white transition-colors">YOUTUBE &bull; ODYSSEY WAR ROOM</a>
+              <div className="flex items-center gap-2.5">
+                <span className="font-cinzel text-xl font-black tracking-[0.25em] text-white">
+                  ODYSSEY
+                </span>
+                <span className="w-1.5 h-1.5 bg-[#D10A20]" />
+                <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#D10A20] font-bold">
+                  WAR ARENA
+                </span>
               </div>
+              <p className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#8E8A82] mt-0.5">
+                ENTER WITH PURPOSE &bull; LEAVE STRONGER
+              </p>
             </div>
+          </div>
 
+          {/* Key Arena Info: 24/7 Access & Location */}
+          <div className="flex flex-wrap items-center gap-6 sm:gap-10 text-xs font-mono text-[#A6A6A6]">
+            <div className="flex items-center gap-2.5">
+              <Clock className="w-4 h-4 text-[#D10A20] flex-shrink-0" />
+              <span>24/7 BIOMETRIC ACCESS</span>
+            </div>
+            <div className="flex items-center gap-2.5">
+              <MapPin className="w-4 h-4 text-[#D10A20] flex-shrink-0" />
+              <span>ARENA GROUND ZERO &bull; SECTOR I</span>
+            </div>
+          </div>
+
+          {/* Return to top */}
+          <div>
             <button
               onClick={scrollToTop}
-              className="mt-6 lg:mt-0 p-2.5 bg-[#0D0D0D] border border-[#201E1C] hover:border-[#9E1B1B] text-[#8E8A82] hover:text-white transition-colors flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0D0D0D] border border-[#201E1C] hover:border-[#D10A20] text-xs font-mono uppercase tracking-[0.2em] text-[#A6A6A6] hover:text-white transition-all cursor-pointer group"
               aria-label="Back to top"
             >
-              <span>TOP</span>
-              <ArrowUp className="w-3.5 h-3.5 text-[#C1121F]" />
+              <span>RETURN TO TOP</span>
+              <ArrowUp className="w-3.5 h-3.5 text-[#D10A20] transition-transform group-hover:-translate-y-0.5" />
             </button>
           </div>
 
         </div>
 
-        {/* Bottom Tier */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-mono text-[#8E8A82]/60">
-          <p>&copy; {new Date().getFullYear()} ODYSSEY WAR ARENA. ALL RIGHTS RESERVED.</p>
-          <div className="flex items-center gap-4 text-[9.5px] uppercase tracking-[0.2em]">
-            <span>ANNO DOMINI MMXXVI</span>
-            <span>&bull;</span>
-            <span>AUT VINCERE AUT MORI</span>
+        {/* Functional Navigation Bar & Copyright */}
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <nav className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-xs font-mono uppercase tracking-[0.2em]" aria-label="Footer Navigation">
+            <a href="#code" onClick={(e) => handleLinkClick(e, '#code')} className="text-[#8E8A82] hover:text-[#D10A20] transition-colors">THE CODE</a>
+            <a href="#training" onClick={(e) => handleLinkClick(e, '#training')} className="text-[#8E8A82] hover:text-[#D10A20] transition-colors">TRAINING</a>
+            <a href="#armory" onClick={(e) => handleLinkClick(e, '#armory')} className="text-[#8E8A82] hover:text-[#D10A20] transition-colors">THE ARMORY</a>
+            <a href="#ritual" onClick={(e) => handleLinkClick(e, '#ritual')} className="text-[#8E8A82] hover:text-[#D10A20] transition-colors">THE RITUAL</a>
+            <a href="#membership" onClick={(e) => handleLinkClick(e, '#membership')} className="text-[#8E8A82] hover:text-[#D10A20] transition-colors">MEMBERSHIP</a>
+            <a href="#enlist" onClick={(e) => handleLinkClick(e, '#enlist')} className="text-[#D10A20] hover:text-white font-bold transition-colors">ENLIST</a>
+          </nav>
+
+          <div className="text-[10px] font-mono tracking-[0.2em] text-[#8E8A82]/60 uppercase text-center md:text-right">
+            &copy; {new Date().getFullYear()} ODYSSEY WAR ARENA &bull; ANNO DOMINI MMXXVI
           </div>
         </div>
 
